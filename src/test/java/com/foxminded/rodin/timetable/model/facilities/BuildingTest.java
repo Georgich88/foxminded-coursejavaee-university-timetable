@@ -7,10 +7,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-public class BuildingTest {
+class BuildingTest {
 
 	@Test
-	public void shouldCreateBuilding() {
+	void shouldCreateBuilding() {
 
 		List<Building> buildings = new ArrayList<Building>(4);
 
@@ -28,7 +28,7 @@ public class BuildingTest {
 
 		buildings = List.of(mainBuilding, gymBuilding, dormitoryBuilding);
 
-		String expectedResult = "[Building{name='Main building', id='null', rooms=[Room{id='1', peopleCapacity=10}, Room{id='2', peopleCapacity=10}]}, Building{name='Sport Gym', id='null', rooms=[Room{id='3', peopleCapacity=10}, Room{id='4', peopleCapacity=30}, Room{id='5', peopleCapacity=2}, Room{id='6', peopleCapacity=2}]}, Building{name='Dormitory', id='null', rooms=[]}]";
+		String expectedResult = "[Building{name='Main building', id='null', rooms=[Room{id='1', people capacity=10}, Room{id='2', people capacity=10}]}, Building{name='Sport Gym', id='null', rooms=[Room{id='3', people capacity=10}, Room{id='4', people capacity=30}, Room{id='5', people capacity=2}, Room{id='6', people capacity=2}]}, Building{name='Dormitory', id='null', rooms=[]}]";
 
 		assertEquals(expectedResult, buildings.toString());
 	}

@@ -74,4 +74,10 @@ public class CourseSection {
 		this.timeRequired = timeRequired;
 	}
 
+	@Override
+	public String toString() {
+		return "CourseSection [id=" + id + ", name=" + name + ", notes=" + notes + ", grading basis=" + gradingBasis
+				+ ", time required=" + timeRequired + "]";
+	}
+
 }

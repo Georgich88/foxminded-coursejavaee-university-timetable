@@ -34,6 +34,13 @@ public class Faculty {
 		this.subjects = new ArrayList<Subject>();
 	}
 
+	public Faculty(Long id, String name) {
+		this.id = id;
+		this.name = name;
+		this.groups = new ArrayList<Group>();
+		this.subjects = new ArrayList<Subject>();
+	}
+
 	public Faculty(String name) {
 		this.name = name;
 		this.groups = new ArrayList<Group>();

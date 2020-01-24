@@ -31,6 +31,12 @@ public class University {
 		this.faculties = new ArrayList<Faculty>();
 	}
 
+	public University(Long id, String name) {
+		this.id = id;
+		this.name = name;
+		this.faculties = new ArrayList<Faculty>();
+	}
+
 	public University(String name) {
 		this.name = name;
 		this.faculties = new ArrayList<Faculty>();
@@ -60,6 +66,11 @@ public class University {
 
 	public List<Faculty> getFaculties() {
 		return faculties;
+	}
+
+	@Override
+	public String toString() {
+		return "University [id=" + id + ", name=" + name + ", faculties=" + faculties + "]";
 	}
 
 	public void setFaculties(List<Faculty> faculties) {

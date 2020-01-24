@@ -33,6 +33,13 @@ public class Course {
 		this.sections = new ArrayList<CourseSection>();
 	}
 
+	public Course(Long id, String name, String description) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.sections = new ArrayList<CourseSection>();
+	}
+
 	public Course(String name, String description) {
 		this.name = name;
 		this.description = description;

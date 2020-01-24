@@ -61,6 +61,6 @@ public class Room implements Plannable {
 
 	@Override
 	public String toString() {
-		return "Room{" + "id='" + id + '\'' + ", peopleCapacity=" + peopleCapacity + '}';
+		return "Room{" + "id='" + id + '\'' + ", people capacity=" + peopleCapacity + '}';
 	}
 }

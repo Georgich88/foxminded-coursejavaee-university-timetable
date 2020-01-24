@@ -29,6 +29,12 @@ public class Subject {
 		this.name = "";
 	}
 
+	public Subject(Long id, String name) {
+		this.id = id;
+		this.courses = new ArrayList<Course>();
+		this.name = name;
+	}
+
 	public Subject(String name) {
 		this.courses = new ArrayList<Course>();
 		this.name = name;
@@ -62,6 +68,11 @@ public class Subject {
 
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
+	}
+
+	@Override
+	public String toString() {
+		return "Subject [id=" + id + ", name=" + name + ", courses=" + courses + "]";
 	}
 
 }

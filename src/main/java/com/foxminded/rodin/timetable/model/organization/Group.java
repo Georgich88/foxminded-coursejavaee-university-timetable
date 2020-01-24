@@ -1,6 +1,7 @@
 package com.foxminded.rodin.timetable.model.organization;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -34,13 +35,23 @@ public class Group implements Plannable {
 
 	}
 
+	public Group(Long id, String name) {
+		this.id = id;
+		this.name = name;
+		this.students = new ArrayList<Student>();
+		this.requriedCourses = new ArrayList<Course>();
+	}
+
 	public Group(String name) {
 		this.name = name;
+		this.students = new ArrayList<Student>();
+		this.requriedCourses = new ArrayList<Course>();
 	}
 
 	public Group(String name, List<Student> students) {
 		this.name = name;
 		this.students = students;
+		this.requriedCourses = new ArrayList<Course>();
 	}
 
 	public boolean isAvailable(LocalDate begin, LocalDate end) {
@@ -81,7 +92,7 @@ public class Group implements Plannable {
 
 	@Override
 	public String toString() {
-		return "Group [id=" + id + ", name=" + name + ", students=" + students + ", requriedCourses=" + requriedCourses
+		return "Group [id=" + id + ", name=" + name + ", students=" + students + ", requried courses=" + requriedCourses
 				+ "]";
 	}
 
