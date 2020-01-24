@@ -91,8 +91,14 @@
           <td scope="row"> <a th:text="${slot.id}" th:href="@{/slot?id=}+${slot.id}"></a></td>
           <td th:text="${slot.startTime}"></td>
           <td th:text="${slot.endTime}"></td>
-          <td th:text="${slot.room}"></td>
-	      <td th:text="${slot.group}"></td>
+          <td> <div th:if="${slot.room != null}">
+					<div th:href="@{/room?id=}+${slot.room.id}" th:text="${slot.room.name}"></div>    
+		        </div>       
+		  </td>
+	      <td> <div th:if="${slot.group != null}">
+					<div th:href="@{/group?id=}+${slot.group.id}" th:text="${slot.group.name}"></div>    
+		        </div>       
+		  </td>
           <td th:text="${slot.instructor}"></td>
         </tr>
       </tbody>

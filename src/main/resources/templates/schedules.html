@@ -94,7 +94,7 @@
           <td>
 	          <div th:if="${schedule.slots != null}">
 	          	<div class="slot-item" data-th-each="slot : ${schedule.slots}" >	              
-		        	<a th:href="@{/slots?id=}+${slot.id}" th:text="${slot.name}"></a>
+		        	<a th:href="@{/slot?id=}+${slot.id}" th:text="${slot.name}"></a>
 		        </div>
 		       </div>
 	      </td>
