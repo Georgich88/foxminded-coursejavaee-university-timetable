@@ -19,67 +19,67 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "schedules")
 public class Schedule {
 
-	private final static String DATE_FORMAT_PATTERN = "yyyy-MM-dd";
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String name;
-	@OneToMany
-	private List<Slot> slots;
-	@DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
-	private LocalDate startDate;
-	@DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
-	private LocalDate endDate;
+    private final static String DATE_FORMAT_PATTERN = "yyyy-MM-dd";
 
-	public Schedule() {
-		this.name = "";
-		this.slots = new ArrayList<Slot>();
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    @OneToMany
+    private List<Slot> slots;
+    @DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
+    private LocalDate startDate;
+    @DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
+    private LocalDate endDate;
 
-	public Schedule(String name, List<Slot> slots) {
-		this.name = name;
-		this.slots = slots;
-	}
+    public Schedule() {
+        this.name = "";
+        this.slots = new ArrayList<Slot>();
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Schedule(String name, List<Slot> slots) {
+        this.name = name;
+        this.slots = slots;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public List<Slot> getSlots() {
-		return slots;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setSlots(List<Slot> slots) {
-		this.slots = slots;
-	}
+    public List<Slot> getSlots() {
+        return slots;
+    }
 
-	public LocalDate getStartDate() {
-		return startDate;
-	}
+    public void setSlots(List<Slot> slots) {
+        this.slots = slots;
+    }
 
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
+    public LocalDate getStartDate() {
+        return startDate;
+    }
 
-	public LocalDate getEndDate() {
-		return endDate;
-	}
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
 
-	public void setEndDate(LocalDate endDate) {
-		this.endDate = endDate;
-	}
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 
 }

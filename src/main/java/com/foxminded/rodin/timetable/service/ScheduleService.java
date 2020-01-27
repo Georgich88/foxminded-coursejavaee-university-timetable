@@ -11,20 +11,20 @@ import com.foxminded.rodin.timetable.repo.ScheduleRepository;
 @Service
 public class ScheduleService {
 
-	@Autowired
-	private ScheduleRepository scheduleRepository;
+    @Autowired
+    private ScheduleRepository scheduleRepository;
 
-	public List<Schedule> findAll() {
-		List<Schedule> schedules = (List<Schedule>) scheduleRepository.findAll();
-		return schedules;
-	}
+    public List<Schedule> findAll() {
+        List<Schedule> schedules = (List<Schedule>) scheduleRepository.findAll();
+        return schedules;
+    }
 
-	public Schedule save(Schedule schedule) {
-		return scheduleRepository.save(schedule);
-	}
+    public Schedule save(Schedule schedule) {
+        return scheduleRepository.save(schedule);
+    }
 
-	public Schedule findById(Long id) {
-		return scheduleRepository.findById(id).get();
-	}
+    public Schedule findById(Long id) {
+        return scheduleRepository.findById(id).get();
+    }
 
 }

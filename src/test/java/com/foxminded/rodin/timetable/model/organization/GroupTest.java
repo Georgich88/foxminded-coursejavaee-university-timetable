@@ -9,34 +9,34 @@ import org.junit.jupiter.api.Test;
 
 import com.foxminded.rodin.timetable.model.people.Student;
 
-class GroupTest {
+public class GroupTest {
 
-	@Test
-	void shouldCreateGroups() {
+    @Test
+    public void shouldCreateGroups() {
 
-		var psycologyGroup = new Group(1L, "‎PSY-01-01");
-		var computerScienceGroup = new Group(1L, "‎‎CS-01-01");
+        var psycologyGroup = new Group(1L, "‎PSY-01-01");
+        var computerScienceGroup = new Group(1L, "‎‎CS-01-01");
 
-		var faculties = List.of(psycologyGroup, computerScienceGroup);
+        var faculties = List.of(psycologyGroup, computerScienceGroup);
 
-		String expectedResult = "[Group [id=1, name=‎PSY-01-01, students=[], requried courses=[]], Group [id=1, name=‎‎CS-01-01, students=[], requried courses=[]]]";
+        String expectedResult = "[Group [id=1, name=‎PSY-01-01, students=[], requried courses=[]], Group [id=1, name=‎‎CS-01-01, students=[], requried courses=[]]]";
 
-		assertEquals(expectedResult, faculties.toString());
+        assertEquals(expectedResult, faculties.toString());
 
-	}
+    }
 
-	@Test
-	void shouldAssignStudentsToGroup() {
+    @Test
+    public void shouldAssignStudentsToGroup() {
 
-		var psycologyGroup = new Group(1L, "‎PSY-01-01");
-		var studentJon = new Student("Jon", "Bones", "Jones");
-		var studentAnderson = new Student("Anderson", "Spider", "Silva");
+        var psycologyGroup = new Group(1L, "‎PSY-01-01");
+        var studentJon = new Student("Jon", "Bones", "Jones");
+        var studentAnderson = new Student("Anderson", "Spider", "Silva");
 
-		var psycologyStudents = List.of(studentJon, studentAnderson);
-		psycologyGroup.setStudents(List.of(studentJon, studentAnderson));
+        var psycologyStudents = List.of(studentJon, studentAnderson);
+        psycologyGroup.setStudents(List.of(studentJon, studentAnderson));
 
-		assertIterableEquals(psycologyStudents, psycologyGroup.getStudents());
+        assertIterableEquals(psycologyStudents, psycologyGroup.getStudents());
 
-	}
+    }
 
 }

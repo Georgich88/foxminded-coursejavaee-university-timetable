@@ -12,8 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.foxminded.rodin.timetable.repo")
 public class CoursejavaeeUniversityTimetableApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CoursejavaeeUniversityTimetableApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(CoursejavaeeUniversityTimetableApplication.class, args);
+    }
 
 }

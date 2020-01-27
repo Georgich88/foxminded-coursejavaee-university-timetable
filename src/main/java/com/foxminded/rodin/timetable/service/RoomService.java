@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.RoomRepository;
 @Service
 public class RoomService {
 
-	@Autowired
-	private RoomRepository roomRepository;
+    @Autowired
+    private RoomRepository roomRepository;
 
-	public List<Room> findAll() {
-		List<Room> rooms = (List<Room>) roomRepository.findAll();
-		return rooms;
-	}
+    public List<Room> findAll() {
+        List<Room> rooms = (List<Room>) roomRepository.findAll();
+        return rooms;
+    }
 
 }

@@ -18,63 +18,63 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "universites")
 public class University {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@Column
-	private String name;
-	@ManyToMany
-	private List<Faculty> faculties;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column
+    private String name;
+    @ManyToMany
+    private List<Faculty> faculties;
 
-	public University() {
-		this.name = "";
-		this.faculties = new ArrayList<Faculty>();
-	}
+    public University() {
+        this.name = "";
+        this.faculties = new ArrayList<Faculty>();
+    }
 
-	public University(Long id, String name) {
-		this.id = id;
-		this.name = name;
-		this.faculties = new ArrayList<Faculty>();
-	}
+    public University(Long id, String name) {
+        this.id = id;
+        this.name = name;
+        this.faculties = new ArrayList<Faculty>();
+    }
 
-	public University(String name) {
-		this.name = name;
-		this.faculties = new ArrayList<Faculty>();
-	}
+    public University(String name) {
+        this.name = name;
+        this.faculties = new ArrayList<Faculty>();
+    }
 
-	public Faculty addNewFaculty(String facultyName) {
-		var faculty = new Faculty(facultyName);
-		this.faculties.add(faculty);
-		return faculty;
-	}
+    public Faculty addNewFaculty(String facultyName) {
+        var faculty = new Faculty(facultyName);
+        this.faculties.add(faculty);
+        return faculty;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public List<Faculty> getFaculties() {
-		return faculties;
-	}
+    public List<Faculty> getFaculties() {
+        return faculties;
+    }
 
-	@Override
-	public String toString() {
-		return "University [id=" + id + ", name=" + name + ", faculties=" + faculties + "]";
-	}
+    @Override
+    public String toString() {
+        return "University [id=" + id + ", name=" + name + ", faculties=" + faculties + "]";
+    }
 
-	public void setFaculties(List<Faculty> faculties) {
-		this.faculties = faculties;
-	}
+    public void setFaculties(List<Faculty> faculties) {
+        this.faculties = faculties;
+    }
 
 }

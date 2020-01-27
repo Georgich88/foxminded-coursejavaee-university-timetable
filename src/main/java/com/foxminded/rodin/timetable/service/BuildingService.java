@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.BuildingRepository;
 @Service
 public class BuildingService {
 
-	@Autowired
-	private BuildingRepository buildingRepository;
+    @Autowired
+    private BuildingRepository buildingRepository;
 
-	public List<Building> findAll() {
-		List<Building> universities = (List<Building>) buildingRepository.findAll();
-		return universities;
-	}
+    public List<Building> findAll() {
+        List<Building> universities = (List<Building>) buildingRepository.findAll();
+        return universities;
+    }
 
 }

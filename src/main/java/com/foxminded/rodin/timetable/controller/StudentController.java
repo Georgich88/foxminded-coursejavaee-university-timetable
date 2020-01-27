@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.StudentService;
 @Controller
 public class StudentController {
 
-	@Autowired
-	private StudentService studentService;
+    @Autowired
+    private StudentService studentService;
 
-	@RequestMapping("/students")
-	public String StudentList(Model model, Principal principal) {
+    @RequestMapping("/students")
+    public String StudentList(Model model, Principal principal) {
 
-		List<Student> students = studentService.findAll();
+        List<Student> students = studentService.findAll();
 
-		model.addAttribute("students", students);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("students", students);
+        model.addAttribute("activeAll", true);
 
-		return "students";
-	}
+        return "students";
+    }
 
 }

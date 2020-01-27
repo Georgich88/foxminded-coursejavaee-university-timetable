@@ -13,18 +13,18 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "students")
 public class Student extends Person {
 
-	public Student() {
-	}
+    public Student() {
+    }
 
-	public Student(String firstName, String middleName, String lastName) {
-		this.setFirstName(firstName);
-		this.setMiddleName(middleName);
-		this.setLastName(lastName);
-	}
+    public Student(String firstName, String middleName, String lastName) {
+        this.setFirstName(firstName);
+        this.setMiddleName(middleName);
+        this.setLastName(lastName);
+    }
 
-	@Override
-	public String toString() {
-		return getFirstName() + " " + getMiddleName() + " " + getLastName();
-	}
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getMiddleName() + " " + getLastName();
+    }
 
 }

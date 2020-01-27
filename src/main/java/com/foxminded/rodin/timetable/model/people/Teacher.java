@@ -11,30 +11,30 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "teacher")
 public class Teacher extends Person {
 
-	@Column
-	private String academicRank;
+    @Column
+    private String academicRank;
 
-	Teacher() {
-	}
+    Teacher() {
+    }
 
-	public Teacher(String firstName, String middleName, String lastName, String academicRank) {
-		this.setFirstName(firstName);
-		this.setMiddleName(middleName);
-		this.setLastName(lastName);
-		this.academicRank = academicRank;
-	}
+    public Teacher(String firstName, String middleName, String lastName, String academicRank) {
+        this.setFirstName(firstName);
+        this.setMiddleName(middleName);
+        this.setLastName(lastName);
+        this.academicRank = academicRank;
+    }
 
-	public String getAcademicRank() {
-		return academicRank;
-	}
+    public String getAcademicRank() {
+        return academicRank;
+    }
 
-	public void setAcademicRank(String academicRank) {
-		this.academicRank = academicRank;
-	}
+    public void setAcademicRank(String academicRank) {
+        this.academicRank = academicRank;
+    }
 
-	@Override
-	public String toString() {
-		return academicRank + " " + getFirstName() + " " + getMiddleName() + " " + getLastName();
-	}
+    @Override
+    public String toString() {
+        return academicRank + " " + getFirstName() + " " + getMiddleName() + " " + getLastName();
+    }
 
 }

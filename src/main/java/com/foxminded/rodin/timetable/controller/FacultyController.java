@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.FacultyService;
 @Controller
 public class FacultyController {
 
-	@Autowired
-	private FacultyService facultyService;
+    @Autowired
+    private FacultyService facultyService;
 
-	@RequestMapping("/faculties")
-	public String FacultyList(Model model, Principal principal) {
+    @RequestMapping("/faculties")
+    public String FacultyList(Model model, Principal principal) {
 
-		List<Faculty> faculties = facultyService.findAll();
+        List<Faculty> faculties = facultyService.findAll();
 
-		model.addAttribute("faculties", faculties);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("faculties", faculties);
+        model.addAttribute("activeAll", true);
 
-		return "faculties";
-	}
+        return "faculties";
+    }
 
 }

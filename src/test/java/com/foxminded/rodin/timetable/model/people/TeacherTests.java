@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import com.foxminded.rodin.timetable.application.DataGenerator;
 
-class TeacherTests {
+public class TeacherTests {
 
-	@Test
-	void shouldCreateTeachers() {
+    @Test
+    public void shouldCreateTeachers() {
 
-		var teachers = DataGenerator.generateDemoInstructors();
-		assertEquals("[proffesor Dana Jon White, dean Herb  Dean]", teachers.toString());
+        var teachers = DataGenerator.generateDemoInstructors();
+        assertEquals("[proffesor Dana Jon White, dean Herb  Dean]", teachers.toString());
 
-	}
+    }
 
 }

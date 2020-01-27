@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.SubjectService;
 @Controller
 public class SubjectController {
 
-	@Autowired
-	private SubjectService subjectService;
+    @Autowired
+    private SubjectService subjectService;
 
-	@RequestMapping("/subjects")
-	public String SubjectList(Model model, Principal principal) {
+    @RequestMapping("/subjects")
+    public String SubjectList(Model model, Principal principal) {
 
-		List<Subject> subjects = subjectService.findAll();
+        List<Subject> subjects = subjectService.findAll();
 
-		model.addAttribute("subjects", subjects);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("subjects", subjects);
+        model.addAttribute("activeAll", true);
 
-		return "subjects";
-	}
+        return "subjects";
+    }
 
 }

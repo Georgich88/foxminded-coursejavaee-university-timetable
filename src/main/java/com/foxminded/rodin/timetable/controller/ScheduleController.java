@@ -24,65 +24,65 @@ import com.foxminded.rodin.timetable.service.SlotService;
 @Controller
 public class ScheduleController {
 
-	@Autowired
-	private ScheduleService scheduleService;
+    @Autowired
+    private ScheduleService scheduleService;
 
-	@Autowired
-	private RoomService roomService;
+    @Autowired
+    private RoomService roomService;
 
-	@Autowired
-	private SlotService slotService;
+    @Autowired
+    private SlotService slotService;
 
-	@RequestMapping("/schedules")
-	public String ScheduleList(Model model, Principal principal) {
+    @RequestMapping("/schedules")
+    public String ScheduleList(Model model, Principal principal) {
 
-		List<Schedule> schedules = scheduleService.findAll();
+        List<Schedule> schedules = scheduleService.findAll();
 
-		model.addAttribute("schedules", schedules);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("schedules", schedules);
+        model.addAttribute("activeAll", true);
 
-		return "schedules";
-	}
+        return "schedules";
+    }
 
-	@RequestMapping(value = "/schedule")
-	public String addNewSchedule(Model model, Principal principal) {
-		var schedule = new Schedule();
-		model.addAttribute("schedule", schedule);
-		return "schedule";
-	}
+    @RequestMapping(value = "/schedule")
+    public String addNewSchedule(Model model, Principal principal) {
+        var schedule = new Schedule();
+        model.addAttribute("schedule", schedule);
+        return "schedule";
+    }
 
-	@RequestMapping(value = "/schedule", params = { "save" }, method = RequestMethod.POST)
-	public String addBookPost(@ModelAttribute("schedule") Schedule schedule, BindingResult bindingResult, Model model,
-			HttpServletRequest request) {
+    @RequestMapping(value = "/schedule", params = { "save" }, method = RequestMethod.POST)
+    public String addBookPost(@ModelAttribute("schedule") Schedule schedule, BindingResult bindingResult, Model model,
+            HttpServletRequest request) {
 
-		slotService.saveAll(schedule.getSlots());
-		scheduleService.save(schedule);
-		return "redirect:/schedules";
-	}
+        slotService.saveAll(schedule.getSlots());
+        scheduleService.save(schedule);
+        return "redirect:/schedules";
+    }
 
-	@RequestMapping(value = "/schedule", params = { "id" })
-	public String editSchedule(@PathParam("id") Long id, Model model, Principal principal) {
+    @RequestMapping(value = "/schedule", params = { "id" })
+    public String editSchedule(@PathParam("id") Long id, Model model, Principal principal) {
 
-		Schedule schedule = scheduleService.findById(id);
-		model.addAttribute("schedule", schedule);
-		return "schedule";
-	}
+        Schedule schedule = scheduleService.findById(id);
+        model.addAttribute("schedule", schedule);
+        return "schedule";
+    }
 
-	@RequestMapping(value = "/schedule", params = { "addSlot" }, method = RequestMethod.POST)
-	public String addSlot(Schedule schedule, Model model, Principal principal) {
-		schedule.getSlots().add(new Slot());
-		return "schedule";
-	}
+    @RequestMapping(value = "/schedule", params = { "addSlot" }, method = RequestMethod.POST)
+    public String addSlot(Schedule schedule, Model model, Principal principal) {
+        schedule.getSlots().add(new Slot());
+        return "schedule";
+    }
 
-	@RequestMapping(value = "/schedule", params = { "removeSlot" }, method = RequestMethod.POST)
-	public String removeSlot(Schedule schedule, BindingResult bindingResult, HttpServletRequest req) {
-		final Integer rowId = Integer.valueOf(req.getParameter("removeSlot"));
-		schedule.getSlots().remove(rowId.intValue());
-		return "schedule";
-	}
+    @RequestMapping(value = "/schedule", params = { "removeSlot" }, method = RequestMethod.POST)
+    public String removeSlot(Schedule schedule, BindingResult bindingResult, HttpServletRequest req) {
+        final Integer rowId = Integer.valueOf(req.getParameter("removeSlot"));
+        schedule.getSlots().remove(rowId.intValue());
+        return "schedule";
+    }
 
-	@ModelAttribute("availableRooms")
-	public List<Room> populateVarieties(Schedule schedule, Model model) {
-		return roomService.findAll();
-	}
+    @ModelAttribute("availableRooms")
+    public List<Room> populateVarieties(Schedule schedule, Model model) {
+        return roomService.findAll();
+    }
 }

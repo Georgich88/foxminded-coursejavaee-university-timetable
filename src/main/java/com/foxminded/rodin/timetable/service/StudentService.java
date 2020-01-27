@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.StudentRepository;
 @Service
 public class StudentService {
 
-	@Autowired
-	private StudentRepository studentRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
-	public List<Student> findAll() {
-		List<Student> students = (List<Student>) studentRepository.findAll();
-		return students;
-	}
+    public List<Student> findAll() {
+        List<Student> students = (List<Student>) studentRepository.findAll();
+        return students;
+    }
 
 }

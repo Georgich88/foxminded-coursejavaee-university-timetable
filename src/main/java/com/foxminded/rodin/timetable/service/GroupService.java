@@ -11,17 +11,17 @@ import com.foxminded.rodin.timetable.repo.GroupRepository;
 @Service
 public class GroupService {
 
-	@Autowired
-	private GroupRepository groupRepository;
+    @Autowired
+    private GroupRepository groupRepository;
 
-	public List<Group> findAll() {
-		List<Group> groups = (List<Group>) groupRepository.findAll();
-		return groups;
-	}
+    public List<Group> findAll() {
+        List<Group> groups = (List<Group>) groupRepository.findAll();
+        return groups;
+    }
 
-	public List<Group> saveAll(List<Group> groups) {
-		return (List<Group>) groupRepository.saveAll(groups);
+    public List<Group> saveAll(List<Group> groups) {
+        return (List<Group>) groupRepository.saveAll(groups);
 
-	}
+    }
 
 }

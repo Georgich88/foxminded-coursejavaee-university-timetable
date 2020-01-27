@@ -22,98 +22,98 @@ import com.foxminded.rodin.timetable.model.people.Teacher;
 @Table(name = "slots")
 public class Slot {
 
-	private final static String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm";
+    private final static String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm";
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	@OneToOne
-	private CourseSection courseSection;
-	@OneToOne
-	private Teacher instructor;
-	@OneToOne
-	private Group group;
-	@OneToOne
-	private Room room;
-	@DateTimeFormat(pattern = DATE_TIME_FORMAT_PATTERN)
-	private LocalDateTime startTime;
-	@DateTimeFormat(pattern = DATE_TIME_FORMAT_PATTERN)
-	private LocalDateTime endTime;
-	private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @OneToOne
+    private CourseSection courseSection;
+    @OneToOne
+    private Teacher instructor;
+    @OneToOne
+    private Group group;
+    @OneToOne
+    private Room room;
+    @DateTimeFormat(pattern = DATE_TIME_FORMAT_PATTERN)
+    private LocalDateTime startTime;
+    @DateTimeFormat(pattern = DATE_TIME_FORMAT_PATTERN)
+    private LocalDateTime endTime;
+    private String name;
 
-	public Slot() {
-	}
+    public Slot() {
+    }
 
-	public Slot(Teacher instructor, Group group, Room room, LocalDateTime startTime, LocalDateTime endTime) {
-		this.instructor = instructor;
-		this.group = group;
-		this.room = room;
-		this.startTime = startTime;
-		this.endTime = endTime;
-	}
+    public Slot(Teacher instructor, Group group, Room room, LocalDateTime startTime, LocalDateTime endTime) {
+        this.instructor = instructor;
+        this.group = group;
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Teacher getInstructor() {
-		return instructor;
-	}
+    public Teacher getInstructor() {
+        return instructor;
+    }
 
-	public void setInstructor(Teacher instructor) {
-		this.instructor = instructor;
-	}
+    public void setInstructor(Teacher instructor) {
+        this.instructor = instructor;
+    }
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
-	public Room getRoom() {
-		return room;
-	}
+    public Room getRoom() {
+        return room;
+    }
 
-	public void setRoom(Room room) {
-		this.room = room;
-	}
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 
-	public LocalDateTime getStartTime() {
-		return startTime;
-	}
+    public LocalDateTime getStartTime() {
+        return startTime;
+    }
 
-	public void setStartTime(LocalDateTime startTime) {
-		this.startTime = startTime;
-	}
+    public void setStartTime(LocalDateTime startTime) {
+        this.startTime = startTime;
+    }
 
-	public LocalDateTime getEndTime() {
-		return endTime;
-	}
+    public LocalDateTime getEndTime() {
+        return endTime;
+    }
 
-	public void setEndTime(LocalDateTime endTime) {
-		this.endTime = endTime;
-	}
+    public void setEndTime(LocalDateTime endTime) {
+        this.endTime = endTime;
+    }
 
-	public CourseSection getCourseSection() {
-		return courseSection;
-	}
+    public CourseSection getCourseSection() {
+        return courseSection;
+    }
 
-	public void setCourseSection(CourseSection courseSection) {
-		this.courseSection = courseSection;
-	}
+    public void setCourseSection(CourseSection courseSection) {
+        this.courseSection = courseSection;
+    }
 
 }

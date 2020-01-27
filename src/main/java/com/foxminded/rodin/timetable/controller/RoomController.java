@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.RoomService;
 @Controller
 public class RoomController {
 
-	@Autowired
-	private RoomService roomService;
+    @Autowired
+    private RoomService roomService;
 
-	@RequestMapping("/rooms")
-	public String RoomList(Model model, Principal principal) {
+    @RequestMapping("/rooms")
+    public String RoomList(Model model, Principal principal) {
 
-		List<Room> rooms = roomService.findAll();
+        List<Room> rooms = roomService.findAll();
 
-		model.addAttribute("rooms", rooms);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("rooms", rooms);
+        model.addAttribute("activeAll", true);
 
-		return "rooms";
-	}
+        return "rooms";
+    }
 
 }

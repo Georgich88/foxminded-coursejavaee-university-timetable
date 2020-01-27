@@ -8,15 +8,15 @@ import org.junit.jupiter.api.Test;
 
 public class SubjectTest {
 
-	@Test
-	void shouldCreateSubjects() {
+    @Test
+    public void shouldCreateSubjects() {
 
-		var clinicalPsychologySubject = new Subject(1L, "Clinical Psychology");
-		var socialPsycologySubject = new Subject(2L, "Social Psychology");
+        var clinicalPsychologySubject = new Subject(1L, "Clinical Psychology");
+        var socialPsycologySubject = new Subject(2L, "Social Psychology");
 
-		assertEquals(
-				"[Subject [id=1, name=Clinical Psychology, courses=[]], Subject [id=2, name=Social Psychology, courses=[]]]",
-				List.of(clinicalPsychologySubject, socialPsycologySubject).toString());
-	}
+        assertEquals(
+                "[Subject [id=1, name=Clinical Psychology, courses=[]], Subject [id=2, name=Social Psychology, courses=[]]]",
+                List.of(clinicalPsychologySubject, socialPsycologySubject).toString());
+    }
 
 }

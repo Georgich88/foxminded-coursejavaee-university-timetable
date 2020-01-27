@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.GroupService;
 @Controller
 public class GroupController {
 
-	@Autowired
-	private GroupService groupService;
+    @Autowired
+    private GroupService groupService;
 
-	@RequestMapping("/groups")
-	public String GroupList(Model model, Principal principal) {
+    @RequestMapping("/groups")
+    public String GroupList(Model model, Principal principal) {
 
-		List<Group> groups = groupService.findAll();
+        List<Group> groups = groupService.findAll();
 
-		model.addAttribute("groups", groups);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("groups", groups);
+        model.addAttribute("activeAll", true);
 
-		return "groups";
-	}
+        return "groups";
+    }
 
 }

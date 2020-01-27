@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.UniversityRepository;
 @Service
 public class UniversityService {
 
-	@Autowired
-	private UniversityRepository universityRepository;
+    @Autowired
+    private UniversityRepository universityRepository;
 
-	public List<University> findAll() {
-		List<University> universities = (List<University>) universityRepository.findAll();
-		return universities;
-	}
+    public List<University> findAll() {
+        List<University> universities = (List<University>) universityRepository.findAll();
+        return universities;
+    }
 
 }

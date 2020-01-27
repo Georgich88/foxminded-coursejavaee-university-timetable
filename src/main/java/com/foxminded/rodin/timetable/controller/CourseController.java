@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.CourseService;
 @Controller
 public class CourseController {
 
-	@Autowired
-	private CourseService courseService;
+    @Autowired
+    private CourseService courseService;
 
-	@RequestMapping("/courses")
-	public String CourseList(Model model, Principal principal) {
+    @RequestMapping("/courses")
+    public String CourseList(Model model, Principal principal) {
 
-		List<Course> courses = courseService.findAll();
+        List<Course> courses = courseService.findAll();
 
-		model.addAttribute("courses", courses);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("courses", courses);
+        model.addAttribute("activeAll", true);
 
-		return "courses";
-	}
+        return "courses";
+    }
 
 }

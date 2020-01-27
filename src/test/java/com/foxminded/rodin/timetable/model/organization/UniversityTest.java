@@ -6,20 +6,20 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-class UniversityTest {
+public class UniversityTest {
 
-	@Test
-	void shouldCreateUniversities() {
+    @Test
+    public void shouldCreateUniversities() {
 
-		var coloradoUniversity = new University(1L, "‎Colorado University");
-		var princetonUniversity = new University(1L, "Princeton");
+        var coloradoUniversity = new University(1L, "‎Colorado University");
+        var princetonUniversity = new University(1L, "Princeton");
 
-		var faculties = List.of(coloradoUniversity, princetonUniversity);
+        var faculties = List.of(coloradoUniversity, princetonUniversity);
 
-		String expectedResult = "[University [id=1, name=‎Colorado University, faculties=[]], University [id=1, name=Princeton, faculties=[]]]";
+        String expectedResult = "[University [id=1, name=‎Colorado University, faculties=[]], University [id=1, name=Princeton, faculties=[]]]";
 
-		assertEquals(expectedResult, faculties.toString());
+        assertEquals(expectedResult, faculties.toString());
 
-	}
+    }
 
 }

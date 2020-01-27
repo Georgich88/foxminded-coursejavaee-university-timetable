@@ -14,18 +14,18 @@ import com.foxminded.rodin.timetable.service.BuildingService;
 @Controller
 public class BuildingController {
 
-	@Autowired
-	private BuildingService buildingService;
+    @Autowired
+    private BuildingService buildingService;
 
-	@RequestMapping("/buildings")
-	public String BuildingList(Model model, Principal principal) {
+    @RequestMapping("/buildings")
+    public String BuildingList(Model model, Principal principal) {
 
-		List<Building> buildings = buildingService.findAll();
+        List<Building> buildings = buildingService.findAll();
 
-		model.addAttribute("buildings", buildings);
-		model.addAttribute("activeAll", true);
+        model.addAttribute("buildings", buildings);
+        model.addAttribute("activeAll", true);
 
-		return "buildings";
-	}
+        return "buildings";
+    }
 
 }

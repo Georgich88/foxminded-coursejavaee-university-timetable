@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.FacultyRepository;
 @Service
 public class FacultyService {
 
-	@Autowired
-	private FacultyRepository facultyRepository;
+    @Autowired
+    private FacultyRepository facultyRepository;
 
-	public List<Faculty> findAll() {
-		List<Faculty> faculties = (List<Faculty>) facultyRepository.findAll();
-		return faculties;
-	}
+    public List<Faculty> findAll() {
+        List<Faculty> faculties = (List<Faculty>) facultyRepository.findAll();
+        return faculties;
+    }
 
 }

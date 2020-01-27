@@ -11,12 +11,12 @@ import com.foxminded.rodin.timetable.repo.SubjectRepository;
 @Service
 public class SubjectService {
 
-	@Autowired
-	private SubjectRepository subjectRepository;
+    @Autowired
+    private SubjectRepository subjectRepository;
 
-	public List<Subject> findAll() {
-		List<Subject> subjects = (List<Subject>) subjectRepository.findAll();
-		return subjects;
-	}
+    public List<Subject> findAll() {
+        List<Subject> subjects = (List<Subject>) subjectRepository.findAll();
+        return subjects;
+    }
 
 }
