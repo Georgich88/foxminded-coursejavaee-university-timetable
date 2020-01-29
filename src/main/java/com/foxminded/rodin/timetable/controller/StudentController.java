@@ -18,7 +18,7 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping("/students")
-    public String StudentList(Model model, Principal principal) {
+    public String studentList(Model model, Principal principal) {
 
         List<Student> students = studentService.findAll();
 

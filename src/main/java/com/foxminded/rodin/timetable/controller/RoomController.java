@@ -18,7 +18,7 @@ public class RoomController {
     private RoomService roomService;
 
     @RequestMapping("/rooms")
-    public String RoomList(Model model, Principal principal) {
+    public String roomList(Model model, Principal principal) {
 
         List<Room> rooms = roomService.findAll();
 

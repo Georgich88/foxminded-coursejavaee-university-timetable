@@ -18,7 +18,7 @@ public class BuildingController {
     private BuildingService buildingService;
 
     @RequestMapping("/buildings")
-    public String BuildingList(Model model, Principal principal) {
+    public String buildingList(Model model, Principal principal) {
 
         List<Building> buildings = buildingService.findAll();
 

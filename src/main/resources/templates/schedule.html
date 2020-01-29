@@ -6,10 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
-	<title>Universies</title>
-
+	<title>Schedule</title>
 	<link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/">
-
 	<!-- Bootstrap core CSS -->
 	<link href="/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -51,7 +49,6 @@
 			}
 		}
 	</style>
-	<!-- Custom styles for this template -->
 	<link href="/dist/css/schedule-template-style.css" rel="stylesheet">
 </head>
 
@@ -80,7 +77,8 @@
 		<div class="my-3 p-3 bg-white rounded shadow-sm">
 			<div class="container">
 				<div class="slot">
-					<form class="form-horizontal" th:action="@{/schedule}" method="post" enctype="multipart/form-data">
+					<!-- th:action="@{/schedule/save}" -->
+					<form class="form-horizontal"  method="post" enctype="multipart/form-data">
 						<fieldset>
 							<legend class="center-block">
 								New Schedule Information<span style="font-size: small"> * is a
@@ -142,7 +140,12 @@
 											<th scope="col">Name</th>
 											<th scope="col">Room</th>
 											<th>
-												<button type="submit" name="addSlot">Add slot</button>
+											    <div th:if="${schedule.id != null}">
+												    <button type="submit" th:formaction="@{/schedules/{id}/add-slot(id=${schedule.id})}" name="addSlot">Add slot</button>
+											    </div>
+											    <div th:if="${schedule.id == null}">
+												    <button type="submit" th:formaction="@{/schedules/new/add-slot}" name="addSlot">Add slot</button>
+											    </div>
 											</th>
 										</tr>
 									</thead>
@@ -160,8 +163,12 @@
 												</select>
 											</td>
 											<td>
-												<button type="submit" name="removeSlot"
-													th:value="${slotStat.index}">Remove slot</button>
+												<div th:if="${schedule.id != null}">
+												    <button type="submit" th:formaction="@{/schedules/{id}/remove-slot(id=${schedule.id})}" name="removeSlot">Remove slot</button>
+											    </div>
+											    <div th:if="${schedule.id == null}">
+												    <button type="submit" th:formaction="@{/schedules/new/remove-slot}" name="removeSlot">Remove slot</button>
+											    </div>
 											</td>
 										</tr>
 									</tbody>
@@ -173,17 +180,22 @@
 
 						<div class="submit">
 							<div class="col-md-2"></div>
-							<div class="col-md-8">
-								<button type="submit" name="save" class="btn btn-success">Save schedule</button>
-								<a class="btn btn-danger" th:href="@{/}">Cancel</a>
-							</div>
+							    <div class="btn-group">
+							        <div th:if="${schedule.id != null}">
+								        <button type="submit" th:formaction="@{/schedules/{id}/save(id=${schedule.id})}" name="save" class="btn btn-success mr-2">Save schedule</button>
+								    </div>
+								    <div th:if="${schedule.id == null}">
+								        <button type="submit" th:formaction="@{/schedules/new/save}" name="save" class="btn btn-success mr-2">Save new schedule</button>
+								    </div>
+								    <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+							    </div>
 						</div>
 
 					</form>
 				</div>
 			</div>
 		</div>
-	</main><!-- /.container -->
+	</main>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
 		crossorigin="anonymous"></script>

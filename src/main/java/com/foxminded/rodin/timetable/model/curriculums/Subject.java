@@ -41,7 +41,7 @@ public class Subject {
     }
 
     public Course addNewCourse(String name, String description) {
-        var course = new Course(name, description);
+        Course course = new Course(name, description);
         this.courses.add(course);
         return course;
     }

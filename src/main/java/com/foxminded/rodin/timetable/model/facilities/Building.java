@@ -40,7 +40,7 @@ public class Building {
     }
 
     public Room addNewRoom(String roomName, int peopleCapacity) {
-        var room = new Room(roomName, peopleCapacity);
+        Room room = new Room(roomName, peopleCapacity);
         this.rooms.add(room);
         return room;
     }

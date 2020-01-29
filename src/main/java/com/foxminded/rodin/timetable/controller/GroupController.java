@@ -18,7 +18,7 @@ public class GroupController {
     private GroupService groupService;
 
     @RequestMapping("/groups")
-    public String GroupList(Model model, Principal principal) {
+    public String groupList(Model model, Principal principal) {
 
         List<Group> groups = groupService.findAll();
 

@@ -14,15 +14,15 @@ public class BuildingTest {
 
         List<Building> buildings = new ArrayList<Building>(4);
 
-        var mainBuilding = new Building("Main building");
+        Building mainBuilding = new Building("Main building");
         mainBuilding.addNewRoom("lexure hall", 10).setId(1L);
         mainBuilding.addNewRoom("practise room", 10).setId(2L);
 
-        var gymBuilding = new Building("Sport Gym");
+        Building gymBuilding = new Building("Sport Gym");
         gymBuilding.addNewRoom("tennis hall", 10).setId(3L);
         gymBuilding.addNewRoom("boxing", 30).setId(4L);
 
-        var dormitoryBuilding = new Building("Dormitory");
+        Building dormitoryBuilding = new Building("Dormitory");
         gymBuilding.addNewRoom("Students room", 2).setId(5L);
         gymBuilding.addNewRoom("Staff room", 2).setId(6L);
 

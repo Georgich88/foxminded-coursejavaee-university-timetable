@@ -6,10 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <meta name="description" content=""/>
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors"/>
-    <title>Universies</title>
-
+    <title>Schedules</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/">
-
     <!-- Bootstrap core CSS -->
 <link href="/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -40,7 +38,6 @@
         }
       }
     </style>
-    <!-- Custom styles for this template -->
     <link href="/dist/css/schedule-template-style.css" rel="stylesheet">
   </head>
   <body>
@@ -56,7 +53,7 @@
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/schedule" name="new" >Add new</a>
+        <a class="nav-link" href="/schedules/new" name="new" >Add new</a>
       </li>
 	</div>
     <form class="form-inline my-2 my-lg-0">
@@ -87,14 +84,14 @@
       </thead>
       <tbody>
         <tr class="schedule-item" th:each="schedule : ${schedules}" >
-          <td scope="row"> <a th:text="${schedule.id}" th:href="@{/schedule?id=}+${schedule.id}"></a></td>
+          <td scope="row"> <a th:text="${schedule.id}" th:href="@{/schedules/}+${schedule.id}"></a></td>
           <td th:text="${schedule.name}"></td>
           <td th:text="${schedule.startDate}"></td>
           <td th:text="${schedule.endDate}"></td>
           <td>
 	          <div th:if="${schedule.slots != null}">
 	          	<div class="slot-item" data-th-each="slot : ${schedule.slots}" >	              
-		        	<a th:href="@{/slot?id=}+${slot.id}" th:text="${slot.name}"></a>
+		        	<a th:href="@{/slots/}+${slot.id}" th:text="${slot.name}"></a>
 		        </div>
 		       </div>
 	      </td>
@@ -103,7 +100,7 @@
     </table>
   </div>
 
-</main><!-- /.container -->
+</main>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/site/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
 </html>

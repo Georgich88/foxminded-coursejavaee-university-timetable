@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan({ "com.foxminded.rodin.timetable" })
 @EntityScan("com.foxminded.rodin.timetable.model")
 @EnableJpaRepositories("com.foxminded.rodin.timetable.repo")
-public class CoursejavaeeUniversityTimetableApplication {
+public class UniversityTimetableApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CoursejavaeeUniversityTimetableApplication.class, args);
+        SpringApplication.run(UniversityTimetableApplication.class, args);
     }
 
 }

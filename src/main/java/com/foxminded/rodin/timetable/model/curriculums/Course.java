@@ -47,7 +47,7 @@ public class Course {
     }
 
     public CourseSection addNewSection(String name, String notes, String gradingBasis, int timeRequired) {
-        var section = new CourseSection(name, notes, gradingBasis, timeRequired);
+        CourseSection section = new CourseSection(name, notes, gradingBasis, timeRequired);
         this.sections.add(section);
         return section;
     }

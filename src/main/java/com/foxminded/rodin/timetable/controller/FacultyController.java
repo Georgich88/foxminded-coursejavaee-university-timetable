@@ -18,7 +18,7 @@ public class FacultyController {
     private FacultyService facultyService;
 
     @RequestMapping("/faculties")
-    public String FacultyList(Model model, Principal principal) {
+    public String facultyList(Model model, Principal principal) {
 
         List<Faculty> faculties = facultyService.findAll();
 

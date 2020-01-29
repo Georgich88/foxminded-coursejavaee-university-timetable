@@ -11,10 +11,10 @@ public class FacultyTest {
     @Test
     public void shouldCreateFaculties() {
 
-        var psycologyFaculty = new Faculty(1L, "‎Department of Psychology");
-        var computerScienceFaculty = new Faculty(1L, "‎‎Department of Computer Science");
+        Faculty psycologyFaculty = new Faculty(1L, "‎Department of Psychology");
+        Faculty computerScienceFaculty = new Faculty(1L, "‎‎Department of Computer Science");
 
-        var faculties = List.of(psycologyFaculty, computerScienceFaculty);
+        List<Faculty> faculties = List.of(psycologyFaculty, computerScienceFaculty);
 
         String expectedResult = "[Faculty [id=1, name=‎Department of Psychology, groups=[], subjects=[]], Faculty [id=1, name=‎‎Department of Computer Science, groups=[], subjects=[]]]";
 

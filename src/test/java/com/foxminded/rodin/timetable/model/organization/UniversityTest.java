@@ -11,14 +11,14 @@ public class UniversityTest {
     @Test
     public void shouldCreateUniversities() {
 
-        var coloradoUniversity = new University(1L, "‎Colorado University");
-        var princetonUniversity = new University(1L, "Princeton");
+        University coloradoUniversity = new University(1L, "‎Colorado University");
+        University princetonUniversity = new University(1L, "Princeton");
 
-        var faculties = List.of(coloradoUniversity, princetonUniversity);
+        List<University> universities = List.of(coloradoUniversity, princetonUniversity);
 
-        String expectedResult = "[University [id=1, name=‎Colorado University, faculties=[]], University [id=1, name=Princeton, faculties=[]]]";
+        String expectedResult = "[University [id=1, name=‎Colorado University, universities=[]], University [id=1, name=Princeton, universities=[]]]";
 
-        assertEquals(expectedResult, faculties.toString());
+        assertEquals(expectedResult, universities.toString());
 
     }
 

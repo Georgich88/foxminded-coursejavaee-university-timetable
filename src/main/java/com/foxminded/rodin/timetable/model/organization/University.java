@@ -43,7 +43,7 @@ public class University {
     }
 
     public Faculty addNewFaculty(String facultyName) {
-        var faculty = new Faculty(facultyName);
+        Faculty faculty = new Faculty(facultyName);
         this.faculties.add(faculty);
         return faculty;
     }

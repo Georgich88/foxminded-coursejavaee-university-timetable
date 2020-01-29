@@ -18,7 +18,7 @@ public class SubjectController {
     private SubjectService subjectService;
 
     @RequestMapping("/subjects")
-    public String SubjectList(Model model, Principal principal) {
+    public String subjectList(Model model, Principal principal) {
 
         List<Subject> subjects = subjectService.findAll();
 

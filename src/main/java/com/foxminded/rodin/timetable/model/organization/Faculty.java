@@ -48,13 +48,13 @@ public class Faculty {
     }
 
     public Group addNewGroup(String groupName) {
-        var group = new Group(groupName);
+        Group group = new Group(groupName);
         this.groups.add(group);
         return group;
     }
 
     public Subject addNewSubject(String subjectName) {
-        var subject = new Subject(subjectName);
+        Subject subject = new Subject(subjectName);
         this.subjects.add(subject);
         return subject;
     }

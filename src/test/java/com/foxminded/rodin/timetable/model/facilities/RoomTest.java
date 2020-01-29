@@ -11,12 +11,12 @@ public class RoomTest {
     @Test
     public void shouldCreateRooms() {
 
-        var lexureHall = new Room("lexure hall", 10);
+        Room lexureHall = new Room("lexure hall", 10);
         lexureHall.setId(1L);
-        var practiseRoom = new Room("practise room", 10);
+        Room practiseRoom = new Room("practise room", 10);
         lexureHall.setId(2L);
 
-        var rooms = List.of(lexureHall, practiseRoom);
+        List<Room> rooms = List.of(lexureHall, practiseRoom);
 
         String expectedResult = "[Room{id='2', people capacity=10}, Room{id='null', people capacity=10}]";
 
