@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.foxminded.rodin.timetable.model.facilities.Room;
 import com.foxminded.rodin.timetable.model.organization.Group;
@@ -26,6 +26,9 @@ import com.foxminded.rodin.timetable.service.TeacherService;
 @Controller
 public class SlotController {
 
+    private static final String SLOT_FORM_RESOURSE_NAME = "slot";
+    private static final String SLOTS_LIST_FORM_RESOURSE_NAME = "slots";
+
     @Autowired
     private SlotService slotService;
 
@@ -38,38 +41,38 @@ public class SlotController {
     @Autowired
     private RoomService roomService;
 
-    @RequestMapping("/slots")
-    public String slotList(Model model, Principal principal) {
+    @GetMapping("/slots")
+    public String getAllSlots(Model model, Principal principal) {
 
         List<Slot> slots = slotService.findAll();
 
         model.addAttribute("slots", slots);
         model.addAttribute("activeAll", true);
 
-        return "slots";
+        return SLOTS_LIST_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/slots/new")
+    @GetMapping(value = "/slots/new")
     public String addNewSlot(Model model, Principal principal) {
         Slot slot = new Slot();
         model.addAttribute("slot", slot);
-        return "slot";
+        return SLOT_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/slots/{id}/save", method = RequestMethod.POST)
+    @PostMapping(value = "/slots/{id}/save")
     public String addBookPost(@ModelAttribute("slot") Slot slot, BindingResult bindingResult, Model model,
             HttpServletRequest request) {
 
         slotService.save(slot);
-        return "redirect:/slots";
+        return "redirect:/" + SLOTS_LIST_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/slots/{id}")
+    @GetMapping(value = "/slots/{id}")
     public String editSlot(@PathVariable("id") Long id, Model model, Principal principal) {
 
         Slot slot = slotService.findById(id);
         model.addAttribute("slot", slot);
-        return "slot";
+        return SLOT_FORM_RESOURSE_NAME;
     }
 
     @ModelAttribute("availableRooms")

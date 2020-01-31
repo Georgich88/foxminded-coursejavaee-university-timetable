@@ -14,18 +14,20 @@ import com.foxminded.rodin.timetable.service.UniversityService;
 @Controller
 public class UniversityController {
 
+    private static final String UNIVERSITIES_LIST_FORM_RESOURSE_NAME = "universities";
+
     @Autowired
     private UniversityService unversityService;
 
     @RequestMapping("/universities")
-    public String universityList(Model model, Principal principal) {
+    public String getAllUniversities(Model model, Principal principal) {
 
         List<University> universities = unversityService.findAll();
 
         model.addAttribute("universities", universities);
         model.addAttribute("activeAll", true);
 
-        return "universities";
+        return UNIVERSITIES_LIST_FORM_RESOURSE_NAME;
     }
 
 }

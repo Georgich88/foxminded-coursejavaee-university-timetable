@@ -1,13 +1,15 @@
 package com.foxminded.rodin.timetable.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class HomeController {
 
-    @RequestMapping("/")
+    private static final String INDEX_FORM_RESOURSE_NAME = "index";
+
+    @GetMapping("/")
     public String index() {
-        return "index";
+        return INDEX_FORM_RESOURSE_NAME;
     }
 }

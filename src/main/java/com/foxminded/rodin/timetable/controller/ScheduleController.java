@@ -3,16 +3,14 @@ package com.foxminded.rodin.timetable.controller;
 import java.security.Principal;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.foxminded.rodin.timetable.model.facilities.Room;
 import com.foxminded.rodin.timetable.model.schedules.Schedule;
@@ -24,6 +22,9 @@ import com.foxminded.rodin.timetable.service.SlotService;
 @Controller
 public class ScheduleController {
 
+    private static final String SCHEDULE_FORM_RESOURSE_NAME = "schedule";
+    private static final String SCHEDULES_LIST_FORM_RESOURSE_NAME = "schedules";
+
     @Autowired
     private ScheduleService scheduleService;
 
@@ -33,52 +34,49 @@ public class ScheduleController {
     @Autowired
     private SlotService slotService;
 
-    @RequestMapping("/schedules")
-    public String ScheduleList(Model model, Principal principal) {
+    @GetMapping(value = "/schedules")
+    public String allSchedules(Model model) {
 
         List<Schedule> schedules = scheduleService.findAll();
 
         model.addAttribute("schedules", schedules);
         model.addAttribute("activeAll", true);
 
-        return "schedules";
+        return SCHEDULES_LIST_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/schedules/new")
+    @GetMapping(value = "/schedules/new")
     public String addNewSchedule(Model model, Principal principal) {
         Schedule schedule = new Schedule();
         model.addAttribute("schedule", schedule);
-        return "schedule";
+        return SCHEDULE_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/schedules/{id}/save", method = RequestMethod.POST)
-    public String addBookPost(@ModelAttribute("schedule") Schedule schedule, BindingResult bindingResult, Model model,
-            HttpServletRequest request) {
-
+    @PostMapping(value = "/schedules/{id}/save")
+    public String saveSchedule(@ModelAttribute("schedule") Schedule schedule) {
         slotService.saveAll(schedule.getSlots());
         scheduleService.save(schedule);
-        return "redirect:/schedules";
+        return "redirect:/" + SCHEDULES_LIST_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/schedules/{id}")
-    public String editSchedule(@PathVariable("id") Long id, Model model, Principal principal) {
-
+    @GetMapping(value = "/schedules/{id}")
+    public String editSchedule(@PathVariable("id") Long id, Model model) {
         Schedule schedule = scheduleService.findById(id);
         model.addAttribute("schedule", schedule);
-        return "schedule";
+        return SCHEDULE_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/schedules/{id}/add-slot", method = RequestMethod.POST)
-    public String addSlot(Schedule schedule, Model model, Principal principal) {
+    @PostMapping(value = "/schedules/{id}/add-slot")
+    public String addSlot(Schedule schedule) {
         schedule.getSlots().add(new Slot());
-        return "schedule";
+        return SCHEDULE_FORM_RESOURSE_NAME;
     }
 
-    @RequestMapping(value = "/schedules/{id}/remove-slot", method = RequestMethod.POST)
-    public String removeSlot(Schedule schedule, BindingResult bindingResult, HttpServletRequest req) {
-        final Integer rowId = Integer.valueOf(req.getParameter("removeSlot"));
+    @PostMapping(value = "/schedules/{id}/remove-slot", params = { "rowId" })
+    public String removeSlot(@RequestParam("rowId") String rowIdParam, Schedule schedule) {
+        Integer rowId = Integer.valueOf(rowIdParam);
         schedule.getSlots().remove(rowId.intValue());
-        return "schedule";
+        return SCHEDULE_FORM_RESOURSE_NAME;
     }
 
     @ModelAttribute("availableRooms")

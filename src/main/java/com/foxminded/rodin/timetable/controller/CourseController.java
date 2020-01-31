@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.foxminded.rodin.timetable.model.curriculums.Course;
 import com.foxminded.rodin.timetable.service.CourseService;
@@ -17,8 +17,8 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping("/courses")
-    public String courseList(Model model, Principal principal) {
+    @GetMapping("/courses")
+    public String getAllCourses(Model model, Principal principal) {
 
         List<Course> courses = courseService.findAll();
 

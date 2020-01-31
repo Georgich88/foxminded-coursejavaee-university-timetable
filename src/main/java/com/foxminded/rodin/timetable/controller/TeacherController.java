@@ -14,18 +14,20 @@ import com.foxminded.rodin.timetable.service.TeacherService;
 @Controller
 public class TeacherController {
 
+    private static final String TEACHERS_LIST_FORM_RESOURSE_NAME = "teachers";
+
     @Autowired
     private TeacherService teacherService;
 
     @RequestMapping("/teachers")
-    public String teacherList(Model model, Principal principal) {
+    public String getAllTeachers(Model model, Principal principal) {
 
         List<Teacher> teachers = teacherService.findAll();
 
         model.addAttribute("teachers", teachers);
         model.addAttribute("activeAll", true);
 
-        return "teachers";
+        return TEACHERS_LIST_FORM_RESOURSE_NAME;
     }
 
 }
