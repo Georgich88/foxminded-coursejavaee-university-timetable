@@ -1,6 +1,5 @@
 package com.foxminded.rodin.timetable.controller;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +13,20 @@ import com.foxminded.rodin.timetable.service.CourseService;
 @Controller
 public class CourseController {
 
+    private static final String COURSES_LIST_FORM_RESOURSE_NAME = "courses";
+
     @Autowired
     private CourseService courseService;
 
     @GetMapping("/courses")
-    public String getAllCourses(Model model, Principal principal) {
+    public String getAllCourses(Model model) {
 
         List<Course> courses = courseService.findAll();
 
         model.addAttribute("courses", courses);
         model.addAttribute("activeAll", true);
 
-        return "courses";
+        return COURSES_LIST_FORM_RESOURSE_NAME;
     }
 
 }

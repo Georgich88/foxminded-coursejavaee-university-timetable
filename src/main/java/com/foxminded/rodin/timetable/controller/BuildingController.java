@@ -13,6 +13,8 @@ import com.foxminded.rodin.timetable.service.BuildingService;
 @Controller
 public class BuildingController {
 
+    private static final String BUILDINGS_LIST_FORM_RESOURSE_NAME = "buildings";
+
     @Autowired
     private BuildingService buildingService;
 
@@ -24,7 +26,7 @@ public class BuildingController {
         model.addAttribute("buildings", buildings);
         model.addAttribute("activeAll", true);
 
-        return "buildings";
+        return BUILDINGS_LIST_FORM_RESOURSE_NAME;
     }
 
 }
