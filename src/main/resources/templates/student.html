@@ -57,7 +57,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
-	</div>
+    </div>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
@@ -68,65 +68,65 @@
 
 
 <div class="container">
-		<div class="row">
-			<form class="form-horizontal" th:action="@{/student}" method="post"
-				enctype="multipart/form-data">
-				<fieldset>
-					<legend class="center-block">
-						New Student Informaiton<span style="font-size: small"> * is a
-							required field</span>
-					</legend>
-										
-					<input hidden="hidden" th:field="${student.id}" />
-					
-					<!-- name -->
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="firstName">* First name</label>
-						<div class="col-md-8">
-							<input type="text" name="firstName" class="form-control" id="name"
-								th:value="${student.firstName}" required="required" placeholder="Student" />
-						</div>
-						<label class="col-md-2 control-label" for="middleName">* Middle name</label>
-						<div class="col-md-8">
-							<input type="text" name="middleName" class="form-control" id="name"
-								th:value="${student.middleName}" required="required" placeholder="Student" />
-						</div>
-						<label class="col-md-2 control-label" for="lastName">* Last name</label>
-						<div class="col-md-8">
-							<input type="text" name="lastName" class="form-control" id="name"
-								th:value="${student.lastName}" required="required" placeholder="Student" />
-						</div>
-					</div>
-														    
-					<!-- groups -->
-					<div class="form-group">
-						<label class="col-md-2 control-label" for="group">Groups</label>
-							<div th:if="${student.id != null}">
-	          					<div class="group-item" data-th-each="group : ${studentGroups}" >	              
-		        					<a th:href="@{/groups/}+${group.id}" th:text="${group.name}"></a>
-		        				</div>
-		       				</div>
-					</div>			    
+        <div class="row">
+            <form class="form-horizontal" th:action="@{/student}" method="post"
+                enctype="multipart/form-data">
+                <fieldset>
+                    <legend class="center-block">
+                        New Student Informaiton<span style="font-size: small"> * is a
+                            required field</span>
+                    </legend>
+                                        
+                    <input hidden="hidden" th:field="${student.id}" />
+                    
+                    <!-- name -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="firstName">* First name</label>
+                        <div class="col-md-8">
+                            <input type="text" name="firstName" class="form-control" id="name"
+                                th:value="${student.firstName}" required="required" placeholder="Student" />
+                        </div>
+                        <label class="col-md-2 control-label" for="middleName">* Middle name</label>
+                        <div class="col-md-8">
+                            <input type="text" name="middleName" class="form-control" id="name"
+                                th:value="${student.middleName}" required="required" placeholder="Student" />
+                        </div>
+                        <label class="col-md-2 control-label" for="lastName">* Last name</label>
+                        <div class="col-md-8">
+                            <input type="text" name="lastName" class="form-control" id="name"
+                                th:value="${student.lastName}" required="required" placeholder="Student" />
+                        </div>
+                    </div>
+                                                            
+                    <!-- groups -->
+                    <div class="form-group">
+                        <label class="col-md-2 control-label" for="group">Groups</label>
+                            <div th:if="${student.id != null}">
+                                  <div class="group-item" data-th-each="group : ${studentGroups}" >                  
+                                    <a th:href="@{/groups/}+${group.id}" th:text="${group.name}"></a>
+                                </div>
+                               </div>
+                    </div>                
 
-					<div class="form-group">
-						<div class="submit">
-						    <div class="col-md-2">
-						        <div class="btn-group">
-						            <div th:if="${student.id != null}">
-						                <button type="submit" th:formaction="@{/students/{id}/save(id=${student.id})}" name="save" class="btn btn-success mr-2">Save student</button>
-						            </div>
-						            <div th:if="${student.id == null}">
-						                <button type="submit" th:formaction="@{/students/new/save}" name="save" class="btn btn-success mr-2">Save new student</button>
-						            </div>
-						            <a class="btn btn-danger" th:href="@{/}">Cancel</a>
-						        </div>
-						    </div>
-						</div>
-					</div>
-				</fieldset>
-			</form>
-		</div>
-	</div>
+                    <div class="form-group">
+                        <div class="submit">
+                            <div class="col-md-2">
+                                <div class="btn-group">
+                                    <div th:if="${student.id != null}">
+                                        <button type="submit" th:formaction="@{/students/{id}/save(id=${student.id})}" name="save" class="btn btn-success mr-2">Save student</button>
+                                    </div>
+                                    <div th:if="${student.id == null}">
+                                        <button type="submit" th:formaction="@{/students/new/save}" name="save" class="btn btn-success mr-2">Save new student</button>
+                                    </div>
+                                    <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
       <script>window.jQuery || document.write('<script src="/site/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/dist/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
