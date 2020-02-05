@@ -19,4 +19,12 @@ public class StudentService {
         return students;
     }
 
+    public Student save(Student student) {
+        return studentRepository.save(student);
+    }
+
+    public Student findById(Long id) {
+        return studentRepository.findById(id).get();
+    }
+
 }

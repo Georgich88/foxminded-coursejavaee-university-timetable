@@ -80,7 +80,7 @@
       </thead>
       <tbody>
         <tr class="student-item" th:each="student : ${students}" >
-          <td scope="row"> <a th:text="${student.id}" th:href="@{/students?id=}+${student.id}"></a></td>
+          <td scope="row"> <a th:text="${student.id}" th:href="@{/students/}+${student.id}"></a></td>
           <td th:text="${student.firstName}"></td>
           <td th:text="${student.middleName}"></td>
           <td th:text="${student.lastName}"></td>
