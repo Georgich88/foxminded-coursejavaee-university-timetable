@@ -4,8 +4,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 
+import com.foxminded.rodin.timetable.controller.exceptions.ElementNotFoundException;
 import com.foxminded.rodin.timetable.model.facilities.Room;
 import com.foxminded.rodin.timetable.model.organization.Group;
 import com.foxminded.rodin.timetable.model.people.Teacher;
@@ -31,19 +33,22 @@ public class SlotService {
         return (List<Slot>) slotRepository.saveAll(slots);
     }
 
-    public Slot findById(Long id) {
-        return slotRepository.findById(id).get();
+    public Slot findById(@NonNull Long id) {
+        return slotRepository.findById(id).orElseThrow(ElementNotFoundException::new);
     }
 
-    public List<Room> findAvailableRooms(Long id, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<Room> findAvailableRooms(@NonNull Long id, @NonNull LocalDateTime startDate,
+            @NonNull LocalDateTime endDate) {
         return slotRepository.findAvailableRooms(id, startDate, endDate);
     }
 
-    public List<Group> findAvailableGroups(Long id, LocalDateTime startTime, LocalDateTime endTime) {
+    public List<Group> findAvailableGroups(@NonNull Long id, @NonNull LocalDateTime startTime,
+            @NonNull LocalDateTime endTime) {
         return slotRepository.findAvailableGroups(id, startTime, endTime);
     }
 
-    public List<Teacher> findAvailableTeachers(Long id, LocalDateTime startTime, LocalDateTime endTime) {
+    public List<Teacher> findAvailableTeachers(@NonNull Long id, @NonNull LocalDateTime startTime,
+            @NonNull LocalDateTime endTime) {
         return slotRepository.findAvailableTeachers(id, startTime, endTime);
     }
 

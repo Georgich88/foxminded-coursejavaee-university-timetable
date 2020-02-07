@@ -13,5 +13,4 @@ public interface GroupRepository extends CrudRepository<Group, Long> {
 
     @Query(value = SELECTION_BY_STUDENT_ID_QUERY_TEMPLATE, nativeQuery = true)
     List<Group> findByStudenstId(Long id);
-
 }
