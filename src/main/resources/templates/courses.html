@@ -84,12 +84,12 @@
         </thead>
         <tbody>
           <tr class="course-item" th:each="course : ${courses}">
-            <td scope="row"> <a th:text="${course.id}" th:href="@{/courses?id=}+${course.id}"></a></td>
+            <td scope="row"> <a th:text="${course.id}" th:href="@{/courses/}+${course.id}"></a></td>
             <td th:text="${course.name}"></td>
             <td>
               <div th:if="${course.sections != null}">
                 <div class="section-item" data-th-each="section : ${course.sections}">
-                  <a th:href="@{/sections?id=}+${section.id}" th:text="${section.name}"></a>
+                  <a th:href="@{/sections/}+${section.id}" th:text="${section.name}"></a>
                 </div>
               </div>
             </td>
