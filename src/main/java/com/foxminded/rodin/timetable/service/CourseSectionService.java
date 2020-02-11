@@ -1,7 +1,5 @@
 package com.foxminded.rodin.timetable.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -16,21 +14,12 @@ public class CourseSectionService {
     @Autowired
     private CourseSectionRepository sectionRepository;
 
-    public List<CourseSection> findAll() {
-        List<CourseSection> courseSections = (List<CourseSection>) sectionRepository.findAll();
-        return courseSections;
+    public Iterable<CourseSection> findAll() {
+        return sectionRepository.findAll();
     }
 
-    public CourseSection save(CourseSection courseSection) {
-        return sectionRepository.save(courseSection);
-    }
-
-    public Iterable<CourseSection> saveAll(Iterable<CourseSection> courseSections) {
-        return sectionRepository.saveAll(courseSections);
-    }
-
-    public List<CourseSection> saveAll(List<CourseSection> courseSections) {
-        return (List<CourseSection>) sectionRepository.saveAll(courseSections);
+    public Iterable<CourseSection> saveAll(Iterable<CourseSection> sections) {
+        return sectionRepository.saveAll(sections);
     }
 
     public CourseSection findById(@NonNull Long id) {
