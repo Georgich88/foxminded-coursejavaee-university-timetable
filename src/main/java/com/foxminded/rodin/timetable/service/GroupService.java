@@ -1,5 +1,6 @@
 package com.foxminded.rodin.timetable.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.foxminded.rodin.timetable.model.organization.Group;
 import com.foxminded.rodin.timetable.repo.GroupRepository;
+import com.sun.istack.NotNull;
 
 @Service
 public class GroupService {
@@ -22,6 +24,16 @@ public class GroupService {
     public List<Group> saveAll(List<Group> groups) {
         return (List<Group>) groupRepository.saveAll(groups);
 
+    }
+
+    public List<Group> findByStudenstId(@NotNull Long id) {
+        List<Group> groups;
+        if (id != null) {
+            groups = groupRepository.findByStudenstId(id);
+        } else {
+            groups = new ArrayList<Group>();
+        }
+        return groups;
     }
 
 }
