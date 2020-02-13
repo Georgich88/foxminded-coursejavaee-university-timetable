@@ -73,9 +73,8 @@ public class CourseController {
     }
 
     @PostMapping(value = "/courses/{id}/remove-course-section", params = { "rowId" })
-    public String removeCourseSection(@RequestParam("rowId") String rowIdParam, Course course) {
-        Integer rowId = Integer.valueOf(rowIdParam);
-        course.getSections().remove(rowId.intValue());
+    public String removeCourseSection(@RequestParam("rowId") int rowId, Course course) {
+        course.getSections().remove(rowId);
         return COURSE_FORM_RESOURSE_NAME;
     }
 

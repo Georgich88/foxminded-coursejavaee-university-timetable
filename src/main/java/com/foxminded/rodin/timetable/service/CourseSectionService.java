@@ -22,8 +22,9 @@ public class CourseSectionService {
         return sectionRepository.saveAll(sections);
     }
 
-    public CourseSection findById(@NonNull Long id) {
-        return sectionRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+    public CourseSection findById(long id) {
+        return sectionRepository.findById(id)
+                .orElseThrow(ElementNotFoundException::new);
     }
 
     public void deleteAll(@NonNull Iterable<CourseSection> sections) {
