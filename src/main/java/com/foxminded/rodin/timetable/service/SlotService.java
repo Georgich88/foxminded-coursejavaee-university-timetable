@@ -3,6 +3,8 @@ package com.foxminded.rodin.timetable.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,10 @@ import com.foxminded.rodin.timetable.repo.SlotRepository;
 
 @Service
 public class SlotService {
+
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a slot by id={}";
+
+    private static final Logger logger = LoggerFactory.getLogger(SlotService.class);
 
     @Autowired
     private SlotRepository slotRepository;
@@ -33,21 +39,22 @@ public class SlotService {
         return (List<Slot>) slotRepository.saveAll(slots);
     }
 
-    public Slot findById(@NonNull Long id) {
-        return slotRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+    public Slot findById(long id) {
+        return slotRepository.findById(id).orElseThrow(() -> {
+            logger.error(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            return new ElementNotFoundException();
+        });
     }
 
-    public List<Room> findAvailableRooms(@NonNull Long id, @NonNull LocalDateTime startDate,
-            @NonNull LocalDateTime endDate) {
+    public List<Room> findAvailableRooms(long id, @NonNull LocalDateTime startDate, @NonNull LocalDateTime endDate) {
         return slotRepository.findAvailableRooms(id, startDate, endDate);
     }
 
-    public List<Group> findAvailableGroups(@NonNull Long id, @NonNull LocalDateTime startTime,
-            @NonNull LocalDateTime endTime) {
+    public List<Group> findAvailableGroups(long id, @NonNull LocalDateTime startTime, @NonNull LocalDateTime endTime) {
         return slotRepository.findAvailableGroups(id, startTime, endTime);
     }
 
-    public List<Teacher> findAvailableTeachers(@NonNull Long id, @NonNull LocalDateTime startTime,
+    public List<Teacher> findAvailableTeachers(long id, @NonNull LocalDateTime startTime,
             @NonNull LocalDateTime endTime) {
         return slotRepository.findAvailableTeachers(id, startTime, endTime);
     }
