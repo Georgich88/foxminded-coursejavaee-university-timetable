@@ -17,7 +17,7 @@ import com.foxminded.rodin.timetable.repo.SubjectRepository;
 @Service
 public class CourseService {
 
-    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course by id={}";
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course by id=%d";
 
     private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
@@ -41,8 +41,9 @@ public class CourseService {
 
     public Course findById(long id) {
         return courseRepository.findById(id).orElseThrow(() -> {
-            logger.error(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            return new ElementNotFoundException();
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            logger.error(errorMessage);
+            return new ElementNotFoundException(errorMessage);
         });
     }
 
@@ -50,8 +51,9 @@ public class CourseService {
     public void deleteById(long id) {
 
         Course course = courseRepository.findById(id).orElseThrow(() -> {
-            logger.error(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            return new ElementNotFoundException();
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            logger.error(errorMessage);
+            return new ElementNotFoundException(errorMessage);
         });
         subjectRepository.deleteSubjectCoursesByCourseId(id);
         course.getSections().clear();

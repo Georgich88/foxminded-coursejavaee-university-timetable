@@ -13,7 +13,7 @@ import com.foxminded.rodin.timetable.repo.CourseSectionRepository;
 @Service
 public class CourseSectionService {
 
-    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course section by id={}";
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course section by id=%d";
 
     private static final Logger logger = LoggerFactory.getLogger(CourseSectionService.class);
 
@@ -30,8 +30,9 @@ public class CourseSectionService {
 
     public CourseSection findById(long id) {
         return sectionRepository.findById(id).orElseThrow(() -> {
-            logger.error(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            return new ElementNotFoundException();
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            logger.error(errorMessage);
+            return new ElementNotFoundException(errorMessage);
         });
     }
 

@@ -19,7 +19,7 @@ import com.foxminded.rodin.timetable.repo.SlotRepository;
 @Service
 public class SlotService {
 
-    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a slot by id={}";
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a slot by id=%d";
 
     private static final Logger logger = LoggerFactory.getLogger(SlotService.class);
 
@@ -41,8 +41,9 @@ public class SlotService {
 
     public Slot findById(long id) {
         return slotRepository.findById(id).orElseThrow(() -> {
-            logger.error(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            return new ElementNotFoundException();
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            logger.error(errorMessage);
+            return new ElementNotFoundException(errorMessage);
         });
     }
 
