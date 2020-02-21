@@ -3,8 +3,6 @@ package com.foxminded.rodin.timetable.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -20,8 +18,6 @@ import com.foxminded.rodin.timetable.repo.SlotRepository;
 public class SlotService {
 
     private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a slot by id=%d";
-
-    private static final Logger logger = LoggerFactory.getLogger(SlotService.class);
 
     @Autowired
     private SlotRepository slotRepository;
@@ -42,7 +38,6 @@ public class SlotService {
     public Slot findById(long id) {
         return slotRepository.findById(id).orElseThrow(() -> {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            logger.error(errorMessage);
             return new ElementNotFoundException(errorMessage);
         });
     }

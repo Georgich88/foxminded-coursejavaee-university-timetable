@@ -2,8 +2,6 @@ package com.foxminded.rodin.timetable.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -16,8 +14,6 @@ import com.foxminded.rodin.timetable.repo.StudentRepository;
 public class StudentService {
 
     private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a student by id=%d";
-
-    private static final Logger logger = LoggerFactory.getLogger(SlotService.class);
 
     @Autowired
     private StudentRepository studentRepository;
@@ -34,7 +30,6 @@ public class StudentService {
     public Student findById(@NonNull Long id) {
         return studentRepository.findById(id).orElseThrow(() -> {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            logger.error(errorMessage);
             return new ElementNotFoundException(errorMessage);
         });
     }

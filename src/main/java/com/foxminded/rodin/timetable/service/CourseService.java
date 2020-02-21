@@ -2,8 +2,6 @@ package com.foxminded.rodin.timetable.service;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,8 +16,6 @@ import com.foxminded.rodin.timetable.repo.SubjectRepository;
 public class CourseService {
 
     private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course by id=%d";
-
-    private static final Logger logger = LoggerFactory.getLogger(CourseService.class);
 
     @Autowired
     private CourseRepository courseRepository;
@@ -42,7 +38,6 @@ public class CourseService {
     public Course findById(long id) {
         return courseRepository.findById(id).orElseThrow(() -> {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            logger.error(errorMessage);
             return new ElementNotFoundException(errorMessage);
         });
     }
@@ -52,7 +47,6 @@ public class CourseService {
 
         Course course = courseRepository.findById(id).orElseThrow(() -> {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            logger.error(errorMessage);
             return new ElementNotFoundException(errorMessage);
         });
         subjectRepository.deleteSubjectCoursesByCourseId(id);

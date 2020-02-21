@@ -1,7 +1,5 @@
 package com.foxminded.rodin.timetable.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -14,8 +12,6 @@ import com.foxminded.rodin.timetable.repo.CourseSectionRepository;
 public class CourseSectionService {
 
     private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course section by id=%d";
-
-    private static final Logger logger = LoggerFactory.getLogger(CourseSectionService.class);
 
     @Autowired
     private CourseSectionRepository sectionRepository;
@@ -31,7 +27,6 @@ public class CourseSectionService {
     public CourseSection findById(long id) {
         return sectionRepository.findById(id).orElseThrow(() -> {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
-            logger.error(errorMessage);
             return new ElementNotFoundException(errorMessage);
         });
     }
