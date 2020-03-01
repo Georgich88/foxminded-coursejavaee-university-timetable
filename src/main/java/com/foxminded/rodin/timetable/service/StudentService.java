@@ -13,6 +13,8 @@ import com.foxminded.rodin.timetable.repo.StudentRepository;
 @Service
 public class StudentService {
 
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a student by id=%d";
+
     @Autowired
     private StudentRepository studentRepository;
 
@@ -26,8 +28,10 @@ public class StudentService {
     }
 
     public Student findById(@NonNull Long id) {
-        return studentRepository.findById(id)
-                .orElseThrow(ElementNotFoundException::new);
+        return studentRepository.findById(id).orElseThrow(() -> {
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            return new ElementNotFoundException(errorMessage);
+        });
     }
 
 }

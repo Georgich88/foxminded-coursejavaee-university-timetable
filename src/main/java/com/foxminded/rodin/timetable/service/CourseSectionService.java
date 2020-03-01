@@ -11,6 +11,8 @@ import com.foxminded.rodin.timetable.repo.CourseSectionRepository;
 @Service
 public class CourseSectionService {
 
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course section by id=%d";
+
     @Autowired
     private CourseSectionRepository sectionRepository;
 
@@ -23,8 +25,10 @@ public class CourseSectionService {
     }
 
     public CourseSection findById(long id) {
-        return sectionRepository.findById(id)
-                .orElseThrow(ElementNotFoundException::new);
+        return sectionRepository.findById(id).orElseThrow(() -> {
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            return new ElementNotFoundException(errorMessage);
+        });
     }
 
     public void deleteAll(@NonNull Iterable<CourseSection> sections) {

@@ -3,7 +3,6 @@ package com.foxminded.rodin.timetable.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +14,8 @@ import com.foxminded.rodin.timetable.repo.SubjectRepository;
 
 @Service
 public class CourseService {
+
+    private static final String ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID = "Cannot find a course by id=%d";
 
     @Autowired
     private CourseRepository courseRepository;
@@ -34,14 +35,20 @@ public class CourseService {
         return courseRepository.save(course);
     }
 
-    public Course findById(Long id) {
-        return courseRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+    public Course findById(long id) {
+        return courseRepository.findById(id).orElseThrow(() -> {
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            return new ElementNotFoundException(errorMessage);
+        });
     }
 
     @Transactional
-    public void deleteById(@NonNull Long id) {
+    public void deleteById(long id) {
 
-        Course course = courseRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+        Course course = courseRepository.findById(id).orElseThrow(() -> {
+            String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
+            return new ElementNotFoundException(errorMessage);
+        });
         subjectRepository.deleteSubjectCoursesByCourseId(id);
         course.getSections().clear();
         courseRepository.delete(course);

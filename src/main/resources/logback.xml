@@ -1,0 +1,32 @@
+<configuration>
+
+    <property name="HOME_LOG" value="C:/Java/foxminded/coursejavaee-university-timetable/logs/app.log"/>
+
+    <appender name="application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${HOME_LOG}</file>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/archived/app.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <totalSizeCap>100MB</totalSizeCap>
+            <maxHistory>5</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d %p %c{1.} [%t] %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.foxminded.rodin.timetable" level="DEBUG" additivity="false">
+        <appender-ref ref="application"/>
+    </logger>
+    
+    <logger name="org.hibernate" level="INFO" additivity="false">
+        <appender-ref ref="application"/>
+    </logger>
+
+    <root level="ERROR">
+        <appender-ref ref="application"/>
+    </root>
+
+</configuration>
