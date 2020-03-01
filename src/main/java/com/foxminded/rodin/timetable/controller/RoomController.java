@@ -1,7 +1,6 @@
 package com.foxminded.rodin.timetable.controller;
 
 import java.security.Principal;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ public class RoomController {
     @GetMapping("/rooms")
     public String getAllRooms(Model model, Principal principal) {
 
-        List<Room> rooms = roomService.findAll();
+        Iterable<Room> rooms = roomService.findAll();
 
         model.addAttribute("rooms", rooms);
         model.addAttribute("activeAll", true);
