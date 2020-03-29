@@ -76,7 +76,7 @@ public class SlotController {
     }
 
     @ModelAttribute("availableRooms")
-    public List<Room> populateVarietiesRooms(Slot slot, Model model) {
+    public Iterable<Room> populateVarietiesRooms(Slot slot, Model model) {
         if (slot != null) {
             return slotService.findAvailableRooms(slot.getId(), slot.getStartTime(), slot.getEndTime());
         } else {

@@ -78,7 +78,7 @@
       </thead>
       <tbody>
         <tr class="building-item" th:each="building : ${buildings}" >
-          <td scope="row"> <a th:text="${building.id}" th:href="@{/buildings?id=}+${building.id}"></a></td>
+          <td scope="row"> <a th:text="${building.id}" th:href="@{/buildings/}+${building.id}"></a></td>
           <td th:text="${building.name}"></td>
           <td>
 	          <div th:if="${building.rooms != null}">

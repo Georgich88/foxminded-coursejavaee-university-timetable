@@ -80,7 +80,7 @@ public class ScheduleController {
     }
 
     @ModelAttribute("availableRooms")
-    public List<Room> populateVarieties(Schedule schedule, Model model) {
+    public Iterable<Room> populateVarieties(Schedule schedule, Model model) {
         return roomService.findAll();
     }
 }
