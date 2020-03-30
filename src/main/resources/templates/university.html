@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors" />
+	<title>University</title>
+	<link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/starter-template/">
+	<!-- Bootstrap core CSS -->
+	<link href="/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<!-- Favicons -->
+	<link rel="apple-touch-icon" href="/site/docs/4.4/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+	<link rel="icon" href="/site/docs/4.4/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+	<link rel="icon" href="/site/docs/4.4/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+	<link rel="manifest" href="/site/docs/4.4/assets/img/favicons/manifest.json">
+	<link rel="mask-icon" href="/site/docs/4.4/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+	<link rel="icon" href="/site/docs/4.4/assets/img/favicons/favicon.ico">
+	<meta name="msapplication-config" content="/site/docs/4.4/assets/img/favicons/broomserconfig.xml">
+	<meta name="theme-color" content="#563d7c">
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+	<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+
+	<script type="text/javascript"
+		src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dC6ji_-Abx3iKGmHFSMVtRV71OFXuD5PPNlL9fSpt_1MF9D2MgBoUb6E60noYk-m_C7ZROfiBnI5Fne9YnP6pn7itN_0KAQvczn5Gl9LKbA"
+		charset="UTF-8"></script>
+	<style>
+		.bd-placeholder-img {
+			font-size: 1.125rem;
+			text-anchor: middle;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		@media (min-width: 768px) {
+			.bd-placeholder-img-lg {
+				font-size: 3.5rem;
+			}
+		}
+	</style>
+	<link href="/dist/css/course-template-style.css" rel="stylesheet">
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+		<a class="navbar-brand" href="#">Universities</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+			aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
+		</div>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+			<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+		</form>
+		</div>
+	</nav>
+
+	<main role="main" class="container my-5">
+		<div class="my-3 p-3 bg-white rounded shadow-sm">
+			<div class="container">
+				<div class="Faculty">
+					<form class="form-horizontal"  method="post" enctype="multipart/form-data">
+						<fieldset>
+							<legend class="center-block">
+								New University Information<span style="font-size: small"> * is a
+									required field</span>
+							</legend>
+
+							<!-- name -->
+							<input hidden="hidden" th:field="${university.id}" />
+							<div class="form-group">
+								<label class="col-md-2 control-label" for="name">* Name:</label>
+
+								<div class="col-md-8">
+									<input type="text" name="name" class="form-control" id="name"
+										th:value="${university.name}" required="required" placeholder="University" />
+								</div>
+							</div>							
+
+							<!-- faculties table -->
+							<div>
+								<table class="table table-hover table-striped mt-5" id="faculties">
+									<thead class="thead-dark">
+										<tr>
+											<th scope="col">Row</th>
+											<th scope="col">Name</th>
+											<th>
+											    <div th:if="${university.id != null}">
+												    <button type="submit" th:formaction="@{/universities/{id}/add-faculty(id=${university.id})}" name="addFaculty">Add faculty</button>
+											    </div>
+											    <div th:if="${university.id == null}">
+												    <button type="submit" th:formaction="@{/universities/new/add-faculty}" name="addFaculty">Add faculty</button>
+											    </div>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="Faculty,FacultyStat : ${university.faculties}">
+											<td th:text="${FacultyStat.count}">1</td>
+											<td>
+												<input input name="name" id="name"
+													th:field="${university.faculties[__${FacultyStat.index}__].name}" />
+											</td>										
+											<td>
+												<div th:if="${university.id != null}">
+												    <button type="submit" th:formaction="@{/universities/{id}/remove-faculty(id=${university.id})}" name="rowId" th:value="${FacultyStat.index}">Remove Faculty</button>
+											    </div>
+											    <div th:if="${university.id == null}">
+												    <button type="submit" th:formaction="@{/universities/new/remove-faculty}" name="rowId" th:value="${FacultyStat.index}">Remove Faculty</button>
+											    </div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+
+						</fieldset>
+
+						<div class="submit">
+							<div class="col-md-2"></div>
+							    <div class="btn-group">
+							        <div th:if="${university.id != null}">
+								        <button type="submit" th:formaction="@{/universities/{id}/save(id=${university.id})}" name="save" class="btn btn-success mr-2">Save university</button>
+								    </div>
+								    <div th:if="${university.id != null}">
+								        <button type="submit" th:formaction="@{/universities/{id}/delete(id=${university.id})}" name="delete" class="btn btn-danger mr-2">Delete university</button>
+								    </div>
+								    <div th:if="${university.id == null}">
+								        <button type="submit" th:formaction="@{/universities/new/save}" name="save" class="btn btn-success mr-2">Save new university</button>
+								    </div>
+								    <a class="btn btn-danger" th:href="@{/}">Cancel</a>
+							    </div>
+						</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+		crossorigin="anonymous"></script>
+	<script>window.jQuery || document.write('<script src="/site/docs/4.4/assets/js/vendor/jquery.slim.min.js"><\/script>')</script>
+	<script src="/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

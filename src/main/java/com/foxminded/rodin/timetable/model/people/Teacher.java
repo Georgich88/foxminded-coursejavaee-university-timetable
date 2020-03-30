@@ -14,7 +14,7 @@ public class Teacher extends Person {
     @Column
     private String academicRank;
 
-    Teacher() {
+    public Teacher() {
     }
 
     public Teacher(String firstName, String middleName, String lastName, String academicRank) {
