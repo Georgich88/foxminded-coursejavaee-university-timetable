@@ -39,7 +39,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/new")
-    public String addNewStudent(Model model, Principal principal) {
+    public String createStudent(Model model, Principal principal) {
         Student student = new Student();
         model.addAttribute("student", student);
         return STUDENT_FORM_RESOURSE_NAME;

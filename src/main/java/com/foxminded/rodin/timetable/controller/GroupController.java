@@ -39,7 +39,7 @@ public class GroupController {
     }
 
     @GetMapping(value = "/groups/new")
-    public String addNewGroup(Model model, Principal principal) {
+    public String createGroup(Model model, Principal principal) {
         Group group = new Group();
         model.addAttribute("group", group);
         return GROUP_FORM_RESOURSE_NAME;

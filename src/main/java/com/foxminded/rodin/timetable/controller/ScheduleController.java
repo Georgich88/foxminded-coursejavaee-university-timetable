@@ -46,7 +46,7 @@ public class ScheduleController {
     }
 
     @GetMapping(value = "/schedules/new")
-    public String addNewSchedule(Model model, Principal principal) {
+    public String createSchedule(Model model, Principal principal) {
         Schedule schedule = new Schedule();
         model.addAttribute("schedule", schedule);
         return SCHEDULE_FORM_RESOURSE_NAME;

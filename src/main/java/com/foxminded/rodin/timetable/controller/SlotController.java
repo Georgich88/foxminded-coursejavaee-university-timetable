@@ -53,7 +53,7 @@ public class SlotController {
     }
 
     @GetMapping(value = "/slots/new")
-    public String addNewSlot(Model model, Principal principal) {
+    public String createSlot(Model model, Principal principal) {
         Slot slot = new Slot();
         model.addAttribute("slot", slot);
         return SLOT_FORM_RESOURSE_NAME;

@@ -35,7 +35,7 @@ public class TeacherController {
     }
 
     @GetMapping(value = "/teachers/new")
-    public String addNewTeacher(Model model, Principal principal) {
+    public String createTeacher(Model model, Principal principal) {
         Teacher teacher = new Teacher();
         model.addAttribute("teacher", teacher);
         return TEACHER_FORM_RESOURSE_NAME;

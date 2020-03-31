@@ -39,7 +39,7 @@ public class FacultyController {
     }
 
     @GetMapping(value = "/faculties/new")
-    public String addNewFaculty(Model model, Principal principal) {
+    public String createFaculty(Model model, Principal principal) {
         Faculty faculty = new Faculty();
         model.addAttribute("faculty", faculty);
         return FACULTY_FORM_RESOURSE_NAME;

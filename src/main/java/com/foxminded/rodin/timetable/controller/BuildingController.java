@@ -40,7 +40,7 @@ public class BuildingController {
     }
 
     @GetMapping(value = "/buildings/new")
-    public String addNewBuilding(Model model, Principal principal) {
+    public String createBuilding(Model model, Principal principal) {
         Building building = new Building();
         model.addAttribute("building", building);
         return BUILDING_FORM_RESOURSE_NAME;

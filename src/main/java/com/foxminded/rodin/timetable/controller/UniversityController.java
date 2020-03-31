@@ -40,7 +40,7 @@ public class UniversityController {
     }
 
     @GetMapping(value = "/universities/new")
-    public String addNewUniversity(Model model, Principal principal) {
+    public String createUniversity(Model model, Principal principal) {
         University university = new University();
         model.addAttribute("university", university);
         return UNIVERSITY_FORM_RESOURSE_NAME;

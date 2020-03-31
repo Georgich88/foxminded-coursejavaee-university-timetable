@@ -40,7 +40,7 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courses/new")
-    public String addNewCourse(Model model, Principal principal) {
+    public String createCourse(Model model, Principal principal) {
         Course course = new Course();
         model.addAttribute("course", course);
         return COURSE_FORM_RESOURSE_NAME;
