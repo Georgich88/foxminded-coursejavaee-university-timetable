@@ -35,8 +35,15 @@ public class TeacherController {
     }
 
     @GetMapping(value = "/teachers/new")
-    public String createTeacher(Model model, Principal principal) {
+    public String showNewTeacherForm(Model model, Principal principal) {
         Teacher teacher = new Teacher();
+        model.addAttribute("teacher", teacher);
+        return TEACHER_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/teachers/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Teacher teacher = teacherService.findById(id);
         model.addAttribute("teacher", teacher);
         return TEACHER_FORM_RESOURSE_NAME;
     }
@@ -45,13 +52,6 @@ public class TeacherController {
     public String saveTeacher(@ModelAttribute("teacher") Teacher teacher) {
         teacherService.save(teacher);
         return "redirect:/" + TEACHERS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/teachers/{id}")
-    public String editTeacher(@PathVariable("id") Long id, Model model) {
-        Teacher teacher = teacherService.findById(id);
-        model.addAttribute("teacher", teacher);
-        return TEACHER_FORM_RESOURSE_NAME;
     }
 
 }

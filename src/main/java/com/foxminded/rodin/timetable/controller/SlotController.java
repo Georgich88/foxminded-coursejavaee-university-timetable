@@ -53,8 +53,16 @@ public class SlotController {
     }
 
     @GetMapping(value = "/slots/new")
-    public String createSlot(Model model, Principal principal) {
+    public String showNewSlotForm(Model model, Principal principal) {
         Slot slot = new Slot();
+        model.addAttribute("slot", slot);
+        return SLOT_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/slots/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model, Principal principal) {
+
+        Slot slot = slotService.findById(id);
         model.addAttribute("slot", slot);
         return SLOT_FORM_RESOURSE_NAME;
     }
@@ -65,14 +73,6 @@ public class SlotController {
 
         slotService.save(slot);
         return "redirect:/" + SLOTS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/slots/{id}")
-    public String editSlot(@PathVariable("id") Long id, Model model, Principal principal) {
-
-        Slot slot = slotService.findById(id);
-        model.addAttribute("slot", slot);
-        return SLOT_FORM_RESOURSE_NAME;
     }
 
     @ModelAttribute("availableRooms")

@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,8 +41,15 @@ public class CourseController {
     }
 
     @GetMapping(value = "/courses/new")
-    public String createCourse(Model model, Principal principal) {
+    public String showNewCourseForm(Model model, Principal principal) {
         Course course = new Course();
+        model.addAttribute("course", course);
+        return COURSE_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/courses/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Course course = courseService.findById(id);
         model.addAttribute("course", course);
         return COURSE_FORM_RESOURSE_NAME;
     }
@@ -53,17 +61,10 @@ public class CourseController {
         return "redirect:/" + COURSES_LIST_FORM_RESOURSE_NAME;
     }
 
-    @PostMapping(value = "/courses/{id}/delete")
+    @DeleteMapping(value = "/courses/{id}/delete")
     public String deleteCourse(@PathVariable("id") Long id) {
         courseService.deleteById(id);
         return "redirect:/" + COURSES_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/courses/{id}")
-    public String editCourse(@PathVariable("id") Long id, Model model) {
-        Course course = courseService.findById(id);
-        model.addAttribute("course", course);
-        return COURSE_FORM_RESOURSE_NAME;
     }
 
     @PostMapping(value = "/courses/{id}/add-course-section")

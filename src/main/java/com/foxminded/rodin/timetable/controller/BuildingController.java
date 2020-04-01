@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +40,16 @@ public class BuildingController {
         return BUILDINGS_LIST_FORM_RESOURSE_NAME;
     }
 
-    @GetMapping(value = "/buildings/new")
-    public String createBuilding(Model model, Principal principal) {
+    @PostMapping(value = "/buildings/new")
+    public String showNewBuildingForm(Model model, Principal principal) {
         Building building = new Building();
+        model.addAttribute("building", building);
+        return BUILDING_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/buildings/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Building building = buildingService.findById(id);
         model.addAttribute("building", building);
         return BUILDING_FORM_RESOURSE_NAME;
     }
@@ -53,17 +61,10 @@ public class BuildingController {
         return "redirect:/" + BUILDINGS_LIST_FORM_RESOURSE_NAME;
     }
 
-    @PostMapping(value = "/buildings/{id}/delete")
+    @DeleteMapping(value = "/buildings/{id}/delete")
     public String deleteBuilding(@PathVariable("id") Long id) {
         buildingService.deleteById(id);
         return "redirect:/" + BUILDINGS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/buildings/{id}")
-    public String editBuilding(@PathVariable("id") Long id, Model model) {
-        Building building = buildingService.findById(id);
-        model.addAttribute("building", building);
-        return BUILDING_FORM_RESOURSE_NAME;
     }
 
     @PostMapping(value = "/buildings/{id}/add-room")

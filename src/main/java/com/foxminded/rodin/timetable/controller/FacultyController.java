@@ -5,6 +5,7 @@ import java.security.Principal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,8 +40,15 @@ public class FacultyController {
     }
 
     @GetMapping(value = "/faculties/new")
-    public String createFaculty(Model model, Principal principal) {
+    public String showNewFacultyForm(Model model, Principal principal) {
         Faculty faculty = new Faculty();
+        model.addAttribute("faculty", faculty);
+        return FACULTY_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/faculties/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Faculty faculty = facultyService.findById(id);
         model.addAttribute("faculty", faculty);
         return FACULTY_FORM_RESOURSE_NAME;
     }
@@ -52,17 +60,10 @@ public class FacultyController {
         return "redirect:/" + FACULTIES_LIST_FORM_RESOURSE_NAME;
     }
 
-    @PostMapping(value = "/faculties/{id}/delete")
+    @DeleteMapping(value = "/faculties/{id}/delete")
     public String deleteFaculty(@PathVariable("id") Long id) {
         facultyService.deleteById(id);
         return "redirect:/" + FACULTIES_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/faculties/{id}")
-    public String editFaculty(@PathVariable("id") Long id, Model model) {
-        Faculty faculty = facultyService.findById(id);
-        model.addAttribute("faculty", faculty);
-        return FACULTY_FORM_RESOURSE_NAME;
     }
 
     @PostMapping(value = "/faculties/{id}/add-group")

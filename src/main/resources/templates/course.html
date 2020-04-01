@@ -152,7 +152,7 @@
 								        <button type="submit" th:formaction="@{/courses/{id}/save(id=${course.id})}" name="save" class="btn btn-success mr-2">Save course</button>
 								    </div>
 								    <div th:if="${course.id != null}">
-								        <button type="submit" th:formaction="@{/courses/{id}/delete(id=${course.id})}" name="delete" class="btn btn-danger mr-2">Delete course</button>
+								        <button type="submit" th:with="url = @{/courses/{id}/delete(id=${course.id})}" th:onclick="sendDelete([[${url}]])" th:method = "delete" name="delete" class="btn btn-danger mr-2">Delete course</button>
 								    </div>
 								    <div th:if="${course.id == null}">
 								        <button type="submit" th:formaction="@{/courses/new/save}" name="save" class="btn btn-success mr-2">Save new course</button>
@@ -173,6 +173,18 @@
 	<script src="/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
 		crossorigin="anonymous"></script>
+	<script th:inline="javascript">
+	    function sendDelete(url) {
+	        var xhttp = new XMLHttpRequest();
+	        xhttp.open("DELETE", url, true);
+	        xhttp.onload = function () {
+	            let responseURL = xhttp.responseURL;
+	            console.log("Redirecting to:", responseURL);
+	            window.location.replace(responseURL);
+	        };
+	        xhttp.send();
+	    }
+	</script>
 </body>
 
 </html>

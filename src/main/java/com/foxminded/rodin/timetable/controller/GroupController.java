@@ -39,8 +39,15 @@ public class GroupController {
     }
 
     @GetMapping(value = "/groups/new")
-    public String createGroup(Model model, Principal principal) {
+    public String showNewGroupForm(Model model, Principal principal) {
         Group group = new Group();
+        model.addAttribute("group", group);
+        return GROUP_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/groups/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Group group = groupService.findById(id);
         model.addAttribute("group", group);
         return GROUP_FORM_RESOURSE_NAME;
     }
@@ -49,13 +56,6 @@ public class GroupController {
     public String saveGroup(@ModelAttribute("group") Group group) {
         groupService.save(group);
         return "redirect:/" + GROUPS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/groups/{id}")
-    public String editGroup(@PathVariable("id") Long id, Model model) {
-        Group group = groupService.findById(id);
-        model.addAttribute("group", group);
-        return GROUP_FORM_RESOURSE_NAME;
     }
 
     @ModelAttribute("requiredCourses")

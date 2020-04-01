@@ -39,8 +39,15 @@ public class StudentController {
     }
 
     @GetMapping(value = "/students/new")
-    public String createStudent(Model model, Principal principal) {
+    public String showNewStudentForm(Model model, Principal principal) {
         Student student = new Student();
+        model.addAttribute("student", student);
+        return STUDENT_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/students/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Student student = studentService.findById(id);
         model.addAttribute("student", student);
         return STUDENT_FORM_RESOURSE_NAME;
     }
@@ -49,13 +56,6 @@ public class StudentController {
     public String saveStudent(@ModelAttribute("student") Student student) {
         studentService.save(student);
         return "redirect:/" + STUDENTS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/students/{id}")
-    public String editStudent(@PathVariable("id") Long id, Model model) {
-        Student student = studentService.findById(id);
-        model.addAttribute("student", student);
-        return STUDENT_FORM_RESOURSE_NAME;
     }
 
     @ModelAttribute("studentGroups")
