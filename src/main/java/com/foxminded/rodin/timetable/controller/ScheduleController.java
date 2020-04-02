@@ -46,8 +46,15 @@ public class ScheduleController {
     }
 
     @GetMapping(value = "/schedules/new")
-    public String addNewSchedule(Model model, Principal principal) {
+    public String showNewScheduleForm(Model model, Principal principal) {
         Schedule schedule = new Schedule();
+        model.addAttribute("schedule", schedule);
+        return SCHEDULE_FORM_RESOURSE_NAME;
+    }
+
+    @GetMapping(value = "/schedules/{id}")
+    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
+        Schedule schedule = scheduleService.findById(id);
         model.addAttribute("schedule", schedule);
         return SCHEDULE_FORM_RESOURSE_NAME;
     }
@@ -57,13 +64,6 @@ public class ScheduleController {
         slotService.saveAll(schedule.getSlots());
         scheduleService.save(schedule);
         return "redirect:/" + SCHEDULES_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @GetMapping(value = "/schedules/{id}")
-    public String editSchedule(@PathVariable("id") Long id, Model model) {
-        Schedule schedule = scheduleService.findById(id);
-        model.addAttribute("schedule", schedule);
-        return SCHEDULE_FORM_RESOURSE_NAME;
     }
 
     @PostMapping(value = "/schedules/{id}/add-slot")
