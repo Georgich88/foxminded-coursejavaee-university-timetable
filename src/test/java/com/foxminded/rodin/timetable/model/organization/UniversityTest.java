@@ -16,7 +16,7 @@ public class UniversityTest {
 
         List<University> universities = List.of(coloradoUniversity, princetonUniversity);
 
-        String expectedResult = "[University [id=1, name=‎Colorado University, universities=[]], University [id=1, name=Princeton, universities=[]]]";
+        String expectedResult = "[University [id=1, name=‎Colorado University, faculties=[]], University [id=1, name=Princeton, faculties=[]]]";
 
         assertEquals(expectedResult, universities.toString());
 
