@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.foxminded.rodin.timetable.model.organization.Group;
 import com.foxminded.rodin.timetable.model.people.Student;
+import com.foxminded.rodin.timetable.model.schedules.Slot;
 import com.foxminded.rodin.timetable.service.GroupService;
+import com.foxminded.rodin.timetable.service.SlotService;
 import com.foxminded.rodin.timetable.service.StudentService;
 
 @Controller
@@ -26,6 +28,8 @@ public class StudentController {
     private StudentService studentService;
     @Autowired
     private GroupService groupService;
+    @Autowired
+    private SlotService slotService;
 
     @GetMapping("/students")
     public String getAllStudents(Model model, Principal principal) {
@@ -61,6 +65,11 @@ public class StudentController {
     @ModelAttribute("studentGroups")
     public List<Group> populateVarietiesGroups(Student student, Model model) {
         return groupService.findByStudenstId(student.getId());
+    }
+
+    @ModelAttribute("slots")
+    public List<Slot> populateVarietiesScheduleSlots(Student student, Model model) {
+        return slotService.findSlotsByStudentId(student.getId());
     }
 
 }

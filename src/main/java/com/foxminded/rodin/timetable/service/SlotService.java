@@ -55,4 +55,8 @@ public class SlotService {
         return slotRepository.findAvailableTeachers(id, startTime, endTime);
     }
 
+    public List<Slot> findSlotsByStudentId(long id) {
+        return slotRepository.findSlotsByStudentId(id);
+    }
+
 }
