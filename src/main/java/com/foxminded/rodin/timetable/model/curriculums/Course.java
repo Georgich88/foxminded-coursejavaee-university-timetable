@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -18,9 +19,12 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "courses")
 public class Course {
 
+    private static final String MESSAGE_ERROR_COURSE_NAME_IS_MANDATORY = "Course name is mandatory";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = MESSAGE_ERROR_COURSE_NAME_IS_MANDATORY)
     private String name;
     private String description;
     @Column(name = "courses_sections")

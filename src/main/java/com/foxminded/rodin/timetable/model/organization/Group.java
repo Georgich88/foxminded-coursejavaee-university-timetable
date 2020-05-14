@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -22,10 +23,13 @@ import com.foxminded.rodin.timetable.model.schedules.Plannable;
 @Table(name = "groups")
 public class Group implements Plannable {
 
+    private static final String MESSAGE_ERROR_EMPTY_STUDENT_LIST = "Group should have at least one student";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Size(min = 1, message = MESSAGE_ERROR_EMPTY_STUDENT_LIST)
     @ManyToMany
     private List<Student> students;
     @ManyToMany
