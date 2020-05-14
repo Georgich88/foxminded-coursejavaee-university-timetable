@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.foxminded.rodin.timetable.model.organization.Group;
 import com.foxminded.rodin.timetable.model.people.Student;
-import com.foxminded.rodin.timetable.model.schedules.Slot;
 import com.foxminded.rodin.timetable.service.GroupService;
 import com.foxminded.rodin.timetable.service.SlotService;
 import com.foxminded.rodin.timetable.service.StudentService;
@@ -53,6 +51,8 @@ public class StudentController {
     public String showUpdateForm(@PathVariable("id") Long id, Model model) {
         Student student = studentService.findById(id);
         model.addAttribute("student", student);
+        model.addAttribute("studentGroups", groupService.findByStudenstId(student.getId()));
+        model.addAttribute("slots", slotService.findSlotsByStudentId(student.getId()));
         return STUDENT_FORM_RESOURSE_NAME;
     }
 
@@ -60,16 +60,6 @@ public class StudentController {
     public String saveStudent(@ModelAttribute("student") Student student) {
         studentService.save(student);
         return "redirect:/" + STUDENTS_LIST_FORM_RESOURSE_NAME;
-    }
-
-    @ModelAttribute("studentGroups")
-    public List<Group> populateVarietiesGroups(Student student, Model model) {
-        return groupService.findByStudenstId(student.getId());
-    }
-
-    @ModelAttribute("slots")
-    public List<Slot> populateVarietiesScheduleSlots(Student student, Model model) {
-        return slotService.findSlotsByStudentId(student.getId());
     }
 
 }
