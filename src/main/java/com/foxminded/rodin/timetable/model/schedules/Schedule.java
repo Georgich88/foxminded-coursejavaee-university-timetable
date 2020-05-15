@@ -24,8 +24,8 @@ import com.foxminded.rodin.timetable.validator.StandardPeriodConstraint;
 public class Schedule {
 
     private final static String DATE_FORMAT_PATTERN = "yyyy-MM-dd";
-    private static final String MESSAGE_ERROR_START_DATE_IS_MANDATORY = "Start date is mandatory";
-    private static final String MESSAGE_ERROR_END_DATE_IS_MANDATORY = "End date is mandatory";
+    private static final String ERROR_START_DATE_IS_MANDATORY_MESSAGE = "Start date is mandatory";
+    private static final String ERROR_END_DATE_IS_MANDATORY_MESSAGE = "End date is mandatory";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,10 +33,10 @@ public class Schedule {
     private String name;
     @OneToMany
     private List<Slot> slots;
-    @NotNull(message = MESSAGE_ERROR_START_DATE_IS_MANDATORY)
+    @NotNull(message = ERROR_START_DATE_IS_MANDATORY_MESSAGE)
     @DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
     private LocalDate startDate;
-    @NotNull(message = MESSAGE_ERROR_END_DATE_IS_MANDATORY)
+    @NotNull(message = ERROR_END_DATE_IS_MANDATORY_MESSAGE)
     @DateTimeFormat(pattern = DATE_FORMAT_PATTERN)
     private LocalDate endDate;
 

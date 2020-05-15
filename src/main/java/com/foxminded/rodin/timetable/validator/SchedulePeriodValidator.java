@@ -9,21 +9,11 @@ import com.foxminded.rodin.timetable.model.schedules.Schedule;
 
 public class SchedulePeriodValidator implements ConstraintValidator<StandardPeriodConstraint, Schedule> {
 
-    public SchedulePeriodValidator() {
-    }
-
-    public void initialize(StandardPeriodConstraint constraintAnnotation) {
-    }
-
     @Override
     public boolean isValid(Schedule object, ConstraintValidatorContext context) {
         LocalDate startDate = object.getStartDate();
         LocalDate endDate = object.getEndDate();
-        if (startDate == null || endDate == null || startDate.isAfter(endDate)) {
-            return false;
-        } else {
-            return true;
-        }
+        return startDate != null && endDate != null && startDate.isBefore(endDate);
     }
 
 }

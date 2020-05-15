@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.DynamicUpdate;
@@ -18,14 +19,15 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "buildings")
 public class Building {
 
-    private static final String MESSAGE_ERROR_EMPTY_ROOM_LIST = "Building should have at least one room";
+    private static final String ERROR_EMPTY_ROOM_LIST_MESSAGE = "Building should have at least one room";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     @OneToMany
-    @Size(min = 1, message = MESSAGE_ERROR_EMPTY_ROOM_LIST)
+    @NotNull
+    @Size(min = 1, message = ERROR_EMPTY_ROOM_LIST_MESSAGE)
     private List<Room> rooms;
 
     public Building() {

@@ -20,12 +20,12 @@ import com.foxminded.rodin.timetable.model.curriculums.Subject;
 @Table(name = "faculties")
 public class Faculty {
 
-    private static final String MESSAGE_ERROR_FACULTY_NAME_IS_MANDATORY = "Faculty name is mandatory";
+    private static final String ERROR_FACULTY_NAME_IS_MANDATORY_MESSAGE = "Faculty name is mandatory";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = MESSAGE_ERROR_FACULTY_NAME_IS_MANDATORY)
+    @NotBlank(message = ERROR_FACULTY_NAME_IS_MANDATORY_MESSAGE)
     private String name;
     @OneToMany
     private List<Group> groups;

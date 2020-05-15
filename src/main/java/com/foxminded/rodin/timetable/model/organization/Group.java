@@ -23,13 +23,13 @@ import com.foxminded.rodin.timetable.model.schedules.Plannable;
 @Table(name = "groups")
 public class Group implements Plannable {
 
-    private static final String MESSAGE_ERROR_EMPTY_STUDENT_LIST = "Group should have at least one student";
+    private static final String ERROR_EMPTY_STUDENT_LIST_MESSAGE = "Group should have at least one student";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @Size(min = 1, message = MESSAGE_ERROR_EMPTY_STUDENT_LIST)
+    @Size(min = 1, message = ERROR_EMPTY_STUDENT_LIST_MESSAGE)
     @ManyToMany
     private List<Student> students;
     @ManyToMany

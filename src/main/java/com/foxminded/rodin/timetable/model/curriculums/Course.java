@@ -19,12 +19,12 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "courses")
 public class Course {
 
-    private static final String MESSAGE_ERROR_COURSE_NAME_IS_MANDATORY = "Course name is mandatory";
+    private static final String ERROR_COURSE_NAME_IS_MANDATORY_MESSAGE = "Course name is mandatory";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = MESSAGE_ERROR_COURSE_NAME_IS_MANDATORY)
+    @NotBlank(message = ERROR_COURSE_NAME_IS_MANDATORY_MESSAGE)
     private String name;
     private String description;
     @Column(name = "courses_sections")

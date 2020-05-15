@@ -1,6 +1,6 @@
 package com.foxminded.rodin.timetable.controller.exceptions;
 
-import java.util.stream.Collectors;
+import static java.util.stream.Collectors.toList;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.ConstraintViolationException;
@@ -18,7 +18,8 @@ public class ConstraintViolationExceptionHandler extends ResponseEntityException
         ModelAndView response = new ModelAndView("error-422.html");
         if (exp != null) {
             response.addObject("errorList", exp.getConstraintViolations().stream()
-                    .map(constraintViolation -> constraintViolation.getMessage()).collect(Collectors.toList()));
+                    .map(constraintViolation -> constraintViolation.getMessage())
+                    .collect(toList()));
         }
         return response;
     }

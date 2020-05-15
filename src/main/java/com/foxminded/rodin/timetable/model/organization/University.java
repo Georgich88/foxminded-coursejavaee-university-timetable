@@ -19,13 +19,13 @@ import org.hibernate.annotations.DynamicUpdate;
 @Table(name = "universites")
 public class University {
 
-    private static final String MESSAGE_ERROR_UNIVERSITY_NAME_IS_MANDATORY = "University name is mandatory";
+    private static final String ERROR_UNIVERSITY_NAME_IS_MANDATORY_MESSAGE = "University name is mandatory";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
-    @NotBlank(message = MESSAGE_ERROR_UNIVERSITY_NAME_IS_MANDATORY)
+    @NotBlank(message = ERROR_UNIVERSITY_NAME_IS_MANDATORY_MESSAGE)
     private String name;
     @ManyToMany
     private List<Faculty> faculties;
