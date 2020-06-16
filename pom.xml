@@ -20,9 +20,11 @@
         <frontend-src-dir>${project.basedir}/src/main/js</frontend-src-dir>
         <slf4j.version>1.7.30</slf4j.version>
         <logback.version>1.2.3</logback.version>
+        <logback.version>1.2.3</logback.version>
+        <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
     </properties>
 
-    <dependencies>
+    <dependencies>   
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -35,7 +37,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>${hibernate-validator.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

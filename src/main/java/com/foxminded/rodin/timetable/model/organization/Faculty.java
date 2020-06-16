@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -19,9 +20,12 @@ import com.foxminded.rodin.timetable.model.curriculums.Subject;
 @Table(name = "faculties")
 public class Faculty {
 
+    private static final String ERROR_FACULTY_NAME_IS_MANDATORY_MESSAGE = "Faculty name is mandatory";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = ERROR_FACULTY_NAME_IS_MANDATORY_MESSAGE)
     private String name;
     @OneToMany
     private List<Group> groups;
