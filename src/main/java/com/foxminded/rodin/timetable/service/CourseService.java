@@ -50,10 +50,9 @@ public class CourseService {
             return new ElementNotFoundException(errorMessage);
         });
         subjectRepository.deleteSubjectCoursesByCourseId(id);
+        courseSectionRepository.deleteAll(course.getSections());
         course.getSections().clear();
         courseRepository.delete(course);
-        courseSectionRepository.deleteAll(course.getSections());
-
     }
 
 }

@@ -45,10 +45,9 @@ public class UniversityService {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
             return new ElementNotFoundException(errorMessage);
         });
+        facultyRepository.deleteAll(university.getFaculties());
         university.getFaculties().clear();
         universityRepository.delete(university);
-        facultyRepository.deleteAll(university.getFaculties());
-
     }
 
 }

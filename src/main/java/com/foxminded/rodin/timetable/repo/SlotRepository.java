@@ -3,6 +3,7 @@ package com.foxminded.rodin.timetable.repo;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -24,5 +25,9 @@ public interface SlotRepository extends CrudRepository<Slot, Long> {
 
     @Query(value = "SELECT s FROM Slot s INNER JOIN Group g ON g = s.group INNER JOIN g.students st WHERE st.id = ?1")
     public List<Slot> findSlotsByStudentId(Long id);
+
+    @Modifying
+    @Query(value = "DELETE FROM schedules_slots WHERE slots_id = ?1")
+    void deleteScheduleSlotsBySlotId(Long id);
 
 }
