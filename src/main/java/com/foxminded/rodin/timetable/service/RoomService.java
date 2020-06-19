@@ -1,5 +1,7 @@
 package com.foxminded.rodin.timetable.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
@@ -16,16 +18,16 @@ public class RoomService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public Iterable<Room> findAll() {
-        return roomRepository.findAll();
+    public List<Room> findAll() {
+        return (List<Room>) roomRepository.findAll();
     }
 
-    public void save(Room room) {
-        roomRepository.save(room);
+    public Room save(Room room) {
+        return roomRepository.save(room);
     }
 
-    public Iterable<Room> saveAll(Iterable<Room> rooms) {
-        return roomRepository.saveAll(rooms);
+    public List<Room> saveAll(Iterable<Room> rooms) {
+        return (List<Room>) roomRepository.saveAll(rooms);
     }
 
     public Room findById(long id) {

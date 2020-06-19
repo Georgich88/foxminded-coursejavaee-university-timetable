@@ -27,7 +27,7 @@ public interface SlotRepository extends CrudRepository<Slot, Long> {
     public List<Slot> findSlotsByStudentId(Long id);
 
     @Modifying
-    @Query(value = "DELETE FROM schedules_slots WHERE slots_id = ?1")
+    @Query(value = "DELETE FROM schedules_slots WHERE slot_id = ?1", nativeQuery = true)
     void deleteScheduleSlotsBySlotId(Long id);
 
 }
