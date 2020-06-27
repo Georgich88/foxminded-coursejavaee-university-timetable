@@ -49,9 +49,9 @@ public class FacultyService {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
             return new ElementNotFoundException(errorMessage);
         });
+        groupRepository.deleteAll(faculty.getGroups());
         faculty.getGroups().clear();
         facultyRepository.delete(faculty);
-        groupRepository.deleteAll(faculty.getGroups());
 
     }
 

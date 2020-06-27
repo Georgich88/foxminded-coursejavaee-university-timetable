@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "timetable.rest.version",
+  "type": "java.lang.String",
+  "description": "REST API current version'"
+}]}

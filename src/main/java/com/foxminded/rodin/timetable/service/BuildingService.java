@@ -20,7 +20,7 @@ public class BuildingService {
     private BuildingRepository buildingRepository;
 
     @Autowired
-    private RoomRepository RoomRepository;
+    private RoomRepository roomRepository;
 
     public List<Building> findAll() {
         List<Building> buildings = (List<Building>) buildingRepository.findAll();
@@ -28,6 +28,7 @@ public class BuildingService {
     }
 
     public Building save(Building building) {
+        roomRepository.saveAll(building.getRooms());
         return buildingRepository.save(building);
     }
 
@@ -45,10 +46,9 @@ public class BuildingService {
             String errorMessage = String.format(ERROR_MESSAGE_TEMPLATE_CANNOT_FIND_BY_ID, id);
             return new ElementNotFoundException(errorMessage);
         });
+        roomRepository.deleteAll(building.getRooms());
         building.getRooms().clear();
         buildingRepository.delete(building);
-        RoomRepository.deleteAll(building.getRooms());
-
     }
 
 }
