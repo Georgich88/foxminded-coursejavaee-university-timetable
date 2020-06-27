@@ -22,6 +22,7 @@
         <logback.version>1.2.3</logback.version>
         <logback.version>1.2.3</logback.version>
         <hibernate-validator.version>6.1.5.Final</hibernate-validator.version>
+        <openapi-ui.version>1.2.32</openapi-ui.version>        
     </properties>
 
     <dependencies>   
@@ -80,7 +81,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>        
+        </dependency>  
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>${openapi-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-data-rest</artifactId>
+            <version>${openapi-ui.version}</version>
+        </dependency>      
     </dependencies>
 
     <build>
