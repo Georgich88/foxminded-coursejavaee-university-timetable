@@ -40,6 +40,7 @@ public class BuildingRestController {
     private static final String OPERATITON_DESCRIPTION_UPDATE_BUILDING = "Update a building";
     private static final String OPERATITON_DESCRIPTION_DELETE_BUILDING = "Delete a building by its id";
 
+    private static final String PARAMETER_DESCRIPTION_ID_TO_CREATE = "id of building to be created";    
     private static final String PARAMETER_DESCRIPTION_ID_TO_FIND = "id of building to be found";
     private static final String PARAMETER_DESCRIPTION_ID_TO_UPDATE = "id of building to be updated";
     private static final String PARAMETER_DESCRIPTION_ID_TO_DELETE = "id of building to be deleted";
@@ -77,7 +78,7 @@ public class BuildingRestController {
     @Operation(summary = OPERATITON_DESCRIPTION_CREATE_BUILDING)
     @PostMapping(value = "/buildings/{id}")
     public ResponseEntity<?> createBuilding(
-            @Parameter(description = "id of building to be created") @PathVariable("id") long id,
+            @Parameter(description = PARAMETER_DESCRIPTION_ID_TO_CREATE) @PathVariable("id") long id,
             @RequestBody Building building) {
         EntityModel<Building> entityModel = toModel(buildingService.save(building));
         return toResponse(entityModel);
