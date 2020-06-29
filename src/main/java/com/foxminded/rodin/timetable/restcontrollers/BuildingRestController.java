@@ -107,7 +107,8 @@ public class BuildingRestController {
     }
 
     public ResponseEntity<EntityModel<Building>> toResponse(EntityModel<Building> entityModel) {
-        return ResponseEntity.created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
+        return ResponseEntity
+                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
                 .body(entityModel);
     }
 
